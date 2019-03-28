@@ -11,23 +11,23 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod1" value="home" checked.bind="step.contactMethod & validate">
+                            <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod1" value="home" checked.bind="step.contactMethod & validate:step2Controller">
                             <label class="form-check-label" for="contactMethod1">${'communicationMethods.homeAddress' & t}</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod2" value="business" checked.bind="step.contactMethod & validate">
+                            <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod2" value="business" checked.bind="step.contactMethod & validate:step2Controller">
                             <label class="form-check-label" for="contactMethod2">${'communicationMethods.businessAddress' & t}</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod3" value="email" checked.bind="step.contactMethod & validate">
+                            <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod3" value="email" checked.bind="step.contactMethod & validate:step2Controller">
                             <label class="form-check-label" for="contactMethod3">${'communicationMethods.emailAddress' & t}</label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod4" value="other" checked.bind="step.contactMethod & validate">
+                            <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod4" value="other" checked.bind="step.contactMethod & validate:step2Controller">
                             <label class="form-check-label" for="contactMethod4">${'communicationMethods.other' & t}</label>
                         </div>
                         <div if.bind="step.contactMethod == 'other'">
-                            <input type="text" value.from-view="step.contactMethodAlternative & validate">
+                            <input type="text" value.from-view="step.contactMethodAlternative & validate:step2Controller">
                         </div>
                     </div>
                 </div>
