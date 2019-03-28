@@ -1603,10 +1603,10 @@ aurelia-hot-module-reload@^0.2.0:
   resolved "https://registry.yarnpkg.com/aurelia-hot-module-reload/-/aurelia-hot-module-reload-0.2.1.tgz#f8d58bb966649250d36058b39a6fc19b041ef41b"
   integrity sha1-+NWLuWZkklDTYFizmm/BmwQe9Bs=
 
-aurelia-i18n@^3.0.0-beta.6:
-  version "3.0.0-beta.6"
-  resolved "https://registry.yarnpkg.com/aurelia-i18n/-/aurelia-i18n-3.0.0-beta.6.tgz#60944619d14025cb1a847e8a1376edd4b802b0d6"
-  integrity sha512-0ReAEw17pPG3qyfGsUOEA+PgY2ybtGz/SiUq4FwF9MTep4lPpN9aL+O+Yl7AKgzjMkiNSc9FWFMcIujH1s95Ow==
+aurelia-i18n@3.0.0-beta.5:
+  version "3.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/aurelia-i18n/-/aurelia-i18n-3.0.0-beta.5.tgz#e283f73be0dc41fed593631f1efac614f13ab427"
+  integrity sha512-nnUA31z6q2C2WKj6Q1aXNd7sgDEvnwOIUKgSpP1/+GZhxLJXQIc42M02i2NStGYNYmQtxoxNq5R8tekraL29KA==
   dependencies:
     aurelia-binding "^2.0.0"
     aurelia-dependency-injection "^1.4.1"
@@ -1617,7 +1617,7 @@ aurelia-i18n@^3.0.0-beta.6:
     aurelia-pal "^1.3.0"
     aurelia-templating "^1.8.2"
     aurelia-templating-resources "^1.7.1"
-    i18next "^14.0.1"
+    i18next "^11.6.0"
 
 aurelia-loader-default@^1.0.0:
   version "1.2.1"
@@ -5080,10 +5080,10 @@ i18next-xhr-backend@*, i18next-xhr-backend@^2.0.1:
   resolved "https://registry.yarnpkg.com/i18next-xhr-backend/-/i18next-xhr-backend-2.0.1.tgz#7af735ee1b0c6d4ce49fa5756591040a0fba6db7"
   integrity sha512-CP0XPjJsTE4hY1rM1KXFYo63Ib61EBLEcTvMDyJwr0vs9p/UTuA3ENCmzSs9+ghZgWSjdOigc0oUERHaxctbsQ==
 
-i18next@^14.0.1:
-  version "14.1.1"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-14.1.1.tgz#d569aff68c088151f09fcb0cb6f44b36d62731d3"
-  integrity sha512-HItn9RHLyrDqe6pw6qXMYHGPHNc3y1FZndJfBlD6k4sRS0FAlYLvqCDVIWFc1XultBgsv348TtvL/lleG6JgBg==
+i18next@^11.6.0:
+  version "11.10.2"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-11.10.2.tgz#e5f10346f6320ecf15595419926c25255381a56c"
+  integrity sha512-1rowdX8PqrvsdFhYb3v0A/LlIHLQL1HTa4ia29IzhvNAg2fesNV7R1jXibWLmLQdz3FfTB8RuqSqDEjIawXruA==
 
 i18next@^15.0.8:
   version "15.0.8"
