@@ -1,6 +1,6 @@
 import { inject } from 'aurelia-dependency-injection';
 
-import './flatpickr.css';
+import 'flatpickr/dist/flatpickr.css';
 
 import Flatpickr from 'flatpickr';
 
