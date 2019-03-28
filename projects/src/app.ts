@@ -28,11 +28,11 @@ export class App {
                 title: 'Kyc'
             },
             {
-                route: 'kyc/step-1',
-                name: 'kyc-step-1',
-                moduleId: PLATFORM.moduleName('./routes/kyc/step-1'),
+                route: 'kyc/questionnaire',
+                name: 'questionnaire',
+                moduleId: PLATFORM.moduleName('./routes/kyc/investor-questionnaire'),
                 nav: false,
-                title: 'Step 1'
+                title: 'Investor Questionnaire'
             }
         ]);
 
