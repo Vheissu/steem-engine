@@ -1,0 +1,10 @@
+{
+    "kycProcess": "KYC Process",
+    "personalDetails": "Personal Details",
+    "firstName": "First name",
+    "middleInitial": "Middle initial",
+    "lastName": "Last name",
+    "dateOfBirth": "Date of Birth",
+    "homeAddress": "Home address",
+    "stateRegisteredToVote": "State in which you are registered to vote"
+}

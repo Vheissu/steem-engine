@@ -1,4 +1,4 @@
 export const baseEnvironmentConfiguration = {
     siteName: 'Steem Engine.',
-    defaultLocale: 'en'
+    defaultLocale: 'en-US'
 };
