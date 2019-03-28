@@ -1,3 +1,4 @@
+import { BootstrapFormRenderer } from './../../resources/bootstrap-form-renderer';
 import { Step2Rules } from './step-2.rules';
 import { Store, connectTo } from 'aurelia-store';
 import { autoinject, NewInstance, newInstance } from 'aurelia-framework';
@@ -21,11 +22,14 @@ export class InvestorQuestionnaire {
         @newInstance() private step1Controller: ValidationController,
         @newInstance() private step2Controller: ValidationController
     ) {
-        this.store.registerAction('nextStep', this.nextStep);
-        this.store.registerAction('setTotalSteps', this.setTotalSteps);
-
         this.step1Controller.addObject(this.steps.step1, Step1Rules);
         this.step2Controller.addObject(this.steps.step2, Step2Rules);
+
+        this.step1Controller.addRenderer(new BootstrapFormRenderer());
+        this.step2Controller.addRenderer(new BootstrapFormRenderer());
+
+        this.store.registerAction('nextStep', this.nextStep);
+        this.store.registerAction('setTotalSteps', this.setTotalSteps);
     }
 
     attached() {
