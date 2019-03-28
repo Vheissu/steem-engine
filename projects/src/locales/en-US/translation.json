@@ -6,5 +6,14 @@
     "lastName": "Last name",
     "dateOfBirth": "Date of Birth",
     "homeAddress": "Home address",
-    "stateRegisteredToVote": "State in which you are registered to vote"
+    "stateRegisteredToVote": "State in which you are registered to vote",
+    "homeTelephone": "Home Telephone",
+    "cellPhone": "Cell Phone",
+    "emailAddress": "Email Address",
+    "businessProfession": "Business/Profession",
+    "title": "Title",
+    "companyName": "Company Name",
+    "employedSince": "Employed Since",
+    "businessAddress": "Business Address",
+    "businessTelephone": "Business Telephone"
 }
