@@ -4,12 +4,13 @@ import './styles/main.css';
 
 import { PLATFORM } from 'aurelia-pal';
 import { Router, RouterConfiguration } from 'aurelia-router';
+import environment from 'environment';
 
 export class App {
     public router: Router;
 
     public configureRouter(config: RouterConfiguration, router: Router) {
-        config.title = 'Steem Engine';
+        config.title = environment.siteName;
 
         config.map([
             {
