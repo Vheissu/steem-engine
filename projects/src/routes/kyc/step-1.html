@@ -1,17 +1,16 @@
 <template>
     <div class="container">
-        <div class="col-md-8">
-            <form>
+        <div class="row">
+            <div class="col-md-12">
                 <h3>${'personalDetails' & t}</h3>
+            </div>
+        </div>
 
+        <form class="row">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label for="firstName">${'firstName' & t}</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Eg. John" value.bind="firstName">
-                </div>
-
-                <div class="form-group">
-                    <label>${'middleInitial' & t}</label>
-                    <input type="text" class="form-control" placeholder="Eg. F" value.bind="middleInitial">
                 </div>
 
                 <div class="form-group">
@@ -20,21 +19,74 @@
                 </div>
 
                 <div class="form-group">
-                    <label>${'dateOfBirth' & t}</label>
-                    <input type="text" class="form-control" value.bind="dateOfBirth" flatpickr>
-                </div> 
-                
-                <div class="form-group">
                     <label>${'homeAddress' & t}</label>
                     <input type="text" class="form-control" placeholder="123 Fake Street" value.bind="homeAddress">
                 </div>
 
                 <div class="form-group">
+                    <label>${'homeTelephone' & t}</label>
+                    <input type="text" class="form-control" placeholder="555 5555" value.bind="homeTelephone">
+                </div>
+
+                <div class="form-group">
+                    <label>${'emailAddress' & t}</label>
+                    <input type="email" class="form-control" placeholder="johncitizen@gmail.com" value.bind="emailAddress">
+                </div>
+
+                <div class="form-group">
+                    <label>${'title' & t}</label>
+                    <input type="text" class="form-control" placeholder="President" value.bind="title">
+                </div>
+
+                <div class="form-group">
+                    <label>${'employedSince' & t}</label>
+                    <input type="text" class="form-control" placeholder="1998" value.bind="employedSince">
+                </div>
+
+                <div class="form-group">
+                    <label>${'businessTelephone' & t}</label>
+                    <input type="text" class="form-control" placeholder="555 9999" value.bind="businessTelephone">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+            
+                <div class="form-group">
+                    <label>${'middleInitial' & t}</label>
+                    <input type="text" class="form-control" placeholder="Eg. F" value.bind="middleInitial">
+                </div>
+
+        
+                <div class="form-group">
+                    <label>${'dateOfBirth' & t}</label>
+                    <input type="text" class="form-control" value.bind="dateOfBirth" flatpickr>
+                </div> 
+        
+                <div class="form-group">
                     <label>${'stateRegisteredToVote' & t}</label>
                     <input type="text" class="form-control" placeholder="Texas" value.bind="stateRegisteredToVote">
                 </div>
-
-            </form>
-        </div>
+        
+                <div class="form-group">
+                    <label>${'cellPhone' & t}</label>
+                    <input type="text" class="form-control" placeholder="555 5555" value.bind="cellPhone">
+                </div>
+        
+                <div class="form-group">
+                    <label>${'businessProfession' & t}</label>
+                    <input type="text" class="form-control" placeholder="Technology" value.bind="businessProfession">
+                </div>
+        
+                <div class="form-group">
+                    <label>${'companyName' & t}</label>
+                    <input type="text" class="form-control" placeholder="President" value.bind="companyName">
+                </div>
+        
+                <div class="form-group">
+                    <label>${'businessAddress' & t}</label>
+                    <input type="text" class="form-control" placeholder="123 Business Avenue" value.bind="businessAddress">
+                </div>
+            </div>
+        </form>
     </div>
 </template>
