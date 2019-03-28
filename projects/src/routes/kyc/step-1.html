@@ -2,27 +2,37 @@
     <div class="container">
         <div class="col-md-8">
             <form>
-                <h3>Personal Details</h3>
+                <h3>${'personalDetails' & t}</h3>
 
                 <div class="form-group">
-                    <label for="firstName">First name</label>
+                    <label for="firstName">${'firstName' & t}</label>
                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Eg. John" value.bind="firstName">
                 </div>
 
                 <div class="form-group">
-                    <label>Middle initial (if applicable)</label>
+                    <label>${'middleInitial' & t}</label>
                     <input type="text" class="form-control" placeholder="Eg. F" value.bind="middleInitial">
                 </div>
 
                 <div class="form-group">
-                    <label>Last name</label>
+                    <label>${'lastName' & t}</label>
                     <input type="text" class="form-control" placeholder="Eg. Kennedy" value.bind="lastName">
                 </div>
 
                 <div class="form-group">
-                    <label>Date of Birth</label>
+                    <label>${'dateOfBirth' & t}</label>
                     <input type="text" class="form-control" value.bind="dateOfBirth" flatpickr>
-                </div>    
+                </div> 
+                
+                <div class="form-group">
+                    <label>${'homeAddress' & t}</label>
+                    <input type="text" class="form-control" placeholder="123 Fake Street" value.bind="homeAddress">
+                </div>
+
+                <div class="form-group">
+                    <label>${'stateRegisteredToVote' & t}</label>
+                    <input type="text" class="form-control" placeholder="Texas" value.bind="stateRegisteredToVote">
+                </div>
 
             </form>
         </div>
