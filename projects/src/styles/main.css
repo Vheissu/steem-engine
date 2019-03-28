@@ -7,3 +7,8 @@
 .navbar-dark a {
     color: inherit;
 }
+
+.asterisk {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
