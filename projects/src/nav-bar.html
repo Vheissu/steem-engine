@@ -1,22 +1,13 @@
 <template bindable="router">
-    <nav class="navbar navbar-expand navbar-dark bd-navbar" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navmenu">
-                <span class="sr-only">Toggle Navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
+    <nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" role="navigation">
+        <a class="navbar-brand mr-0 mr-md-2" href="javascript:void(0);" aria-label="${router.title}">
+            ${router.title}
+        </a>
 
-            <a class="navbar-brand" href="javascript:void(0);">
-                <span>${router.title}</span>
-            </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navmenu">
-            <ul class="nav navbar-nav">
-                <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
-                    <a data-toggle="collapse" data-target="#navigation-navbar-collapse-1.in" href.bind="row.href">${row.title}</a>
+        <div class="navbar-nav-scroll">
+            <ul class="navbar-nav bd-navbar-nav flex-row">
+                <li class="nav-item ${row.isActive ? 'active' : ''}" repeat.for="row of router.navigation">
+                    <a class="nav-link" href.bind="row.href">${row.title}</a>
                 </li>
             </ul>
         </div>
