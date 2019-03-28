@@ -15,5 +15,12 @@
     "companyName": "Company Name",
     "employedSince": "Employed Since",
     "businessAddress": "Business Address",
-    "businessTelephone": "Business Telephone"
+    "businessTelephone": "Business Telephone",
+    "contactMethod": "Contact Method for Communications",
+    "communicationMethods": {
+        "homeAddress": "Home Address",
+        "businessAddress": "Business Address",
+        "emailAddress": "Email Address",
+        "other": "Other (specify below)"
+    }
 }
