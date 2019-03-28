@@ -9,6 +9,7 @@ import { I18N, TCustomAttribute } from 'aurelia-i18n';
 import Backend from 'i18next-xhr-backend';
 
 import { initialState } from './store/state';
+import { ValidationMessageProvider } from 'aurelia-validation';
 
 export function configure(aurelia: Aurelia) {
     aurelia.use
@@ -50,6 +51,22 @@ export function configure(aurelia: Aurelia) {
             debug: true
         });
     });
+
+    ValidationMessageProvider.prototype.getMessage = function(key) {
+        console.log(key);
+        const i18n = aurelia.container.get(I18N);
+        const translation = i18n.tr(`errors:${key}`);
+        return this.parser.parse(translation);
+    }
+
+    ValidationMessageProvider.prototype.getDisplayName = function(propertyName, displayName) {
+        if (displayName !== null && displayName !== undefined) {
+          return displayName;
+        }
+
+        const i18n = aurelia.container.get(I18N);
+        return i18n.tr(propertyName);
+      };
 
     aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
 }
