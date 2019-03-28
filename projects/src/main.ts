@@ -22,6 +22,7 @@ export function configure(aurelia: Aurelia) {
     }
 
     aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));
+    aurelia.use.plugin(PLATFORM.moduleName('aurelia-validation'));
 
     aurelia.use.plugin(PLATFORM.moduleName('aurelia-store', 'store'), {
         initialState: initialState,
