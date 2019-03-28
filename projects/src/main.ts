@@ -1,5 +1,5 @@
 import '@babel/polyfill';
-import 'bootstrap';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 import { Aurelia } from 'aurelia-framework';
 import environment from './environment';
