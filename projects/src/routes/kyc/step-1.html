@@ -1,0 +1,90 @@
+<template class="container step-element" bindable="step">
+    <div class="row">
+            <div class="col-md-12">
+                <h3>${'personalDetails' & t}</h3>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="firstName">${'firstName' & t} <span class="asterisk text-danger">*</span></label>
+                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Eg. John" value.bind="step.firstName & validate">
+                </div>
+
+                <div class="form-group">
+                    <label>${'lastName' & t} <span class="asterisk text-danger">*</span></label>
+                    <input type="text" class="form-control" placeholder="Eg. Kennedy" value.bind="step.lastName & validate">
+                </div>
+
+                <div class="form-group">
+                    <label>${'homeAddress' & t} <span class="asterisk text-danger">*</span></label>
+                    <input type="text" class="form-control" placeholder="123 Fake Street" value.bind="step.homeAddress & validate">
+                </div>
+
+                <div class="form-group">
+                    <label>${'homeTelephone' & t}</label>
+                    <input type="text" class="form-control" placeholder="555 5555" value.bind="step.homeTelephone & validate">
+                </div>
+
+                <div class="form-group">
+                    <label>${'emailAddress' & t}</label>
+                    <input type="email" class="form-control" placeholder="johncitizen@gmail.com" value.bind="step.emailAddress & validate">
+                </div>
+
+                <div class="form-group">
+                    <label>${'title' & t}</label>
+                    <input type="text" class="form-control" placeholder="President" value.bind="step.title & validate">
+                </div>
+
+                <div class="form-group">
+                    <label>${'employedSince' & t}</label>
+                    <input type="text" class="form-control" placeholder="1998" value.bind="step.employedSince & validate">
+                </div>
+
+                <div class="form-group">
+                    <label>${'businessTelephone' & t}</label>
+                    <input type="text" class="form-control" placeholder="555 9999" value.bind="step.businessTelephone & validate">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+            
+                <div class="form-group">
+                    <label>${'middleInitial' & t}</label>
+                    <input type="text" class="form-control" placeholder="Eg. F" value.bind="step.middleInitial & validate">
+                </div>
+
+        
+                <div class="form-group">
+                    <label>${'dateOfBirth' & t}</label>
+                    <input type="text" class="form-control" value.bind="step.dateOfBirth & validate" flatpickr>
+                </div> 
+        
+                <div class="form-group">
+                    <label>${'stateRegisteredToVote' & t}</label>
+                    <input type="text" class="form-control" placeholder="Texas" value.bind="step.stateRegisteredToVote & validate">
+                </div>
+        
+                <div class="form-group">
+                    <label>${'cellPhone' & t}</label>
+                    <input type="text" class="form-control" placeholder="555 5555" value.bind="step.cellPhone & validate">
+                </div>
+        
+                <div class="form-group">
+                    <label>${'businessProfession' & t}</label>
+                    <input type="text" class="form-control" placeholder="Technology" value.bind="step.businessProfession & validate">
+                </div>
+        
+                <div class="form-group">
+                    <label>${'companyName' & t}</label>
+                    <input type="text" class="form-control" placeholder="President" value.bind="step.companyName & validate">
+                </div>
+        
+                <div class="form-group">
+                    <label>${'businessAddress' & t}</label>
+                    <input type="text" class="form-control" placeholder="123 Business Avenue" value.bind="step.businessAddress & validate">
+                </div>
+            </div>
+        </div>
+</template>

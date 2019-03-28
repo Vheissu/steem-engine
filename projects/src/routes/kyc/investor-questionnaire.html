@@ -1,137 +1,17 @@
 <template>
+    <require from="./step-1.html"></require>
+    <require from="./step-2.html"></require>
+    <require from="./step-3.html"></require>
+
     <form submit.trigger="formSubmit($event)" novalidate="">
-        <section class="container" show.bind="state.investorQuestionnaire.currentStep == 1">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>${'personalDetails' & t}</h3>
-                </div>
-            </div>
-        
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="firstName">${'firstName' & t} <span class="asterisk text-danger">*</span></label>
-                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Eg. John" value.bind="steps.step1.firstName & validate">
-                    </div>
-    
-                    <div class="form-group">
-                        <label>${'lastName' & t} <span class="asterisk text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="Eg. Kennedy" value.bind="steps.step1.lastName & validate">
-                    </div>
-    
-                    <div class="form-group">
-                        <label>${'homeAddress' & t} <span class="asterisk text-danger">*</span></label>
-                        <input type="text" class="form-control" placeholder="123 Fake Street" value.bind="steps.step1.homeAddress & validate">
-                    </div>
-    
-                    <div class="form-group">
-                        <label>${'homeTelephone' & t}</label>
-                        <input type="text" class="form-control" placeholder="555 5555" value.bind="steps.step1.homeTelephone & validate">
-                    </div>
-    
-                    <div class="form-group">
-                        <label>${'emailAddress' & t}</label>
-                        <input type="email" class="form-control" placeholder="johncitizen@gmail.com" value.bind="steps.step1.emailAddress & validate">
-                    </div>
-    
-                    <div class="form-group">
-                        <label>${'title' & t}</label>
-                        <input type="text" class="form-control" placeholder="President" value.bind="steps.step1.title & validate">
-                    </div>
-    
-                    <div class="form-group">
-                        <label>${'employedSince' & t}</label>
-                        <input type="text" class="form-control" placeholder="1998" value.bind="steps.step1.employedSince & validate">
-                    </div>
-    
-                    <div class="form-group">
-                        <label>${'businessTelephone' & t}</label>
-                        <input type="text" class="form-control" placeholder="555 9999" value.bind="steps.step1.businessTelephone & validate">
-                    </div>
-                </div>
-    
-                <div class="col-md-6">
-                
-                    <div class="form-group">
-                        <label>${'middleInitial' & t}</label>
-                        <input type="text" class="form-control" placeholder="Eg. F" value.bind="steps.step1.middleInitial & validate">
-                    </div>
-    
-            
-                    <div class="form-group">
-                        <label>${'dateOfBirth' & t}</label>
-                        <input type="text" class="form-control" value.bind="steps.step1.dateOfBirth & validate" flatpickr>
-                    </div> 
-            
-                    <div class="form-group">
-                        <label>${'stateRegisteredToVote' & t}</label>
-                        <input type="text" class="form-control" placeholder="Texas" value.bind="steps.step1.stateRegisteredToVote & validate">
-                    </div>
-            
-                    <div class="form-group">
-                        <label>${'cellPhone' & t}</label>
-                        <input type="text" class="form-control" placeholder="555 5555" value.bind="steps.step1.cellPhone & validate">
-                    </div>
-            
-                    <div class="form-group">
-                        <label>${'businessProfession' & t}</label>
-                        <input type="text" class="form-control" placeholder="Technology" value.bind="steps.step1.businessProfession & validate">
-                    </div>
-            
-                    <div class="form-group">
-                        <label>${'companyName' & t}</label>
-                        <input type="text" class="form-control" placeholder="President" value.bind="steps.step1.companyName & validate">
-                    </div>
-            
-                    <div class="form-group">
-                        <label>${'businessAddress' & t}</label>
-                        <input type="text" class="form-control" placeholder="123 Business Avenue" value.bind="steps.step1.businessAddress & validate">
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section class="container" show.bind="state.investorQuestionnaire.currentStep == 2">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>${'contactMethod' & t}</h3>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6">
-                        <fieldset class="form-group">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod1" value="home" checked.bind="steps.step2.contactMethod & validate">
-                                        <label class="form-check-label" for="contactMethod1">${'communicationMethods.homeAddress' & t}</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod2" value="business" checked.bind="steps.step2.contactMethod & validate">
-                                        <label class="form-check-label" for="contactMethod2">${'communicationMethods.businessAddress' & t}</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod3" value="email" checked.bind="steps.step2.contactMethod & validate">
-                                        <label class="form-check-label" for="contactMethod3">${'communicationMethods.emailAddress' & t}</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="contactMethod" id="contactMethod4" value="other" checked.bind="steps.step2.contactMethod & validate">
-                                        <label class="form-check-label" for="contactMethod4">${'communicationMethods.other' & t}</label>
-                                    </div>
-                                    <div if.bind="steps.step2.contactMethod == 'other'">
-                                        <input type="text" value.from-view="steps.step2.contactMethodAlternative & validate">
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-        </section>
+        <step-1 step.bind="steps.step1"></step-1>
+        <step-2 step.bind="steps.step2"></step-2>
+        <step-3 step.bind="steps.step3"></step-3>
 
         <div class="container questionnaire-buttons text-right">
-            <button type="button" class="btn btn-secondary btn-lg" disabled.bind="state.investorQuestionnaire.currentStep == 1">Previous Step</button>
-            <button type="submit" class="btn btn-primary btn-lg">Next Step</button>
+            <button type="button" class="btn btn-secondary btn-lg" disabled.bind="state.investorQuestionnaire.currentStep == 1">${'previousStep' & t}</button>
+            <button type="submit" class="btn btn-primary btn-lg">${'nextStep' & t}</button>
         </div>
 
     </form>

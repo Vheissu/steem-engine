@@ -12,3 +12,7 @@
     font-size: 1.2rem;
     vertical-align: middle;
 }
+
+.step-element {
+    display: block;
+}
