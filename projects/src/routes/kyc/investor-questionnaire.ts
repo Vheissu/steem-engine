@@ -43,10 +43,19 @@ export class InvestorQuestionnaire {
 
         if (currentStep === 1) {
             const result = await this.step1Controller.validate();
-            console.log(result);
+            
+            if (!result.valid) {
+                return;
+            }
+        } else if (currentStep === 2) {
+            const result = await this.step2Controller.validate();
+
+            if (!result.valid) {
+                return;
+            }
         }
 
-        //this.store.dispatch('nextStep');
+        this.store.dispatch('nextStep');
     }
 
     setTotalSteps(state: State, total: number) {
