@@ -1,7 +1,7 @@
 import { BootstrapFormRenderer } from './../../resources/bootstrap-form-renderer';
 import { Store, connectTo } from 'aurelia-store';
 import { autoinject, NewInstance, newInstance } from 'aurelia-framework';
-import { ValidationController, ValidationRules } from 'aurelia-validation';
+import { ValidationController } from 'aurelia-validation';
 import { State } from 'store/state';
 
 import { Step1Rules } from './step-1.rules';
@@ -15,9 +15,19 @@ export class InvestorQuestionnaire {
     private renderer;
 
     private steps = {
-        step1: {},
-        step2: {},
-        step3: {}
+        step1: {
+            firstName: '',
+            lastName: ''
+        },
+        step2: {
+            contactMethod: '',
+            contactMethodAlternative: ''
+        },
+        step3: {
+            notAnEntity: '',
+            entityName: '',
+            entityState: ''
+        }
     };
 
     constructor(
@@ -28,11 +38,9 @@ export class InvestorQuestionnaire {
     ) {
         this.store.registerAction('nextStep', this.nextStep);
         this.store.registerAction('setTotalSteps', this.setTotalSteps);
-    }
 
-    bind() {
         this.renderer = new BootstrapFormRenderer();
-
+        
         this.step1Controller.addRenderer(this.renderer);
         this.step2Controller.addRenderer(this.renderer);
         this.step3Controller.addRenderer(this.renderer);
@@ -42,14 +50,14 @@ export class InvestorQuestionnaire {
         this.step3Controller.addObject(this.steps.step3, Step3Rules);
     }
 
-    unbind() {
+    attached() {
+        this.store.dispatch('setTotalSteps', (Object.keys(this.steps).length));
+    }
+
+    detached() {
         this.step1Controller.removeRenderer(this.renderer);
         this.step2Controller.removeRenderer(this.renderer);
         this.step3Controller.removeRenderer(this.renderer);
-    }
-
-    attached() {
-        this.store.dispatch('setTotalSteps', (Object.keys(this.steps).length));
     }
 
     async formSubmit(event: Event) {
