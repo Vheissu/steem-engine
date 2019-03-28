@@ -1,23 +1,35 @@
 import '@babel/polyfill';
 import 'bootstrap';
-import {Aurelia} from 'aurelia-framework';
+
+import { Aurelia } from 'aurelia-framework';
 import environment from './environment';
-import {PLATFORM} from 'aurelia-pal';
+import { PLATFORM } from 'aurelia-pal';
 
 import { I18N, TCustomAttribute } from 'aurelia-i18n';
 import Backend from 'i18next-xhr-backend';
+
+import { initialState } from './store/state';
+
 export function configure(aurelia: Aurelia) {
-  aurelia.use
-    .standardConfiguration()
-    .feature(PLATFORM.moduleName('resources/index'));
+    aurelia.use
+        .standardConfiguration()
+        .feature(PLATFORM.moduleName('resources/index'));
 
-  aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
+    aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
 
-  if (environment.testing) {
-    aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
-  }
+    if (environment.testing) {
+        aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
+    }
 
-  aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));
+    aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));
+
+    aurelia.use.plugin(PLATFORM.moduleName('aurelia-store', 'store'), {
+        initialState: initialState,
+        history: {
+            undoable: false,
+            limit: 10
+        }
+    });
 
     aurelia.use.plugin(PLATFORM.moduleName('aurelia-i18n'), instance => {
         let aliases = ['t', 'i18n'];
