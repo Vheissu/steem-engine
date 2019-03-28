@@ -1,8 +1,4 @@
-import { ValidationController } from 'aurelia-validation';
-import { Container } from 'aurelia-dependency-injection';
-import { ValidationControllerFactory } from 'aurelia-validation';
 import {
-    ValidationRenderer,
     RenderInstruction,
     ValidateResult
   } from 'aurelia-validation';
