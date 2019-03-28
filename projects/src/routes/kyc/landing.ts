@@ -6,8 +6,4 @@ export class Landing {
     constructor(private router: AppRouter) {
 
     }
-
-    proceed() {
-        this.router.navigateToRoute('kyc-step-1');
-    }
 }
