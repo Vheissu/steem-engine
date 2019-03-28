@@ -48,12 +48,11 @@ export function configure(aurelia: Aurelia) {
             ns: ['translation', 'buttons', 'errors'],
             defaultNS: 'translation',
             fallbackLng: 'en-US',
-            debug: true
+            debug: false
         });
     });
 
     ValidationMessageProvider.prototype.getMessage = function(key) {
-        console.log(key);
         const i18n = aurelia.container.get(I18N);
         const translation = i18n.tr(`errors:${key}`);
         return this.parser.parse(translation);
