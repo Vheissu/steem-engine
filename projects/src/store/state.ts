@@ -16,6 +16,11 @@ export interface State {
       reputation: any;
       valueInUsd: number;
   };
+
+  investorQuestionnaire: {
+      currentStep: number;
+      totalSteps: number;
+  }
 }
 
 export const initialState: State = {
@@ -35,5 +40,9 @@ export const initialState: State = {
       },
       reputation: 0,
       valueInUsd: 0
+  },
+  investorQuestionnaire: {
+      currentStep: 1,
+      totalSteps: 1
   }
 };
