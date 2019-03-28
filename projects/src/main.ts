@@ -35,7 +35,6 @@ export function configure(aurelia: Aurelia) {
         let aliases = ['t', 'i18n'];
         TCustomAttribute.configureAliases(aliases);
 
-        // register backend plugin
         instance.i18next.use(Backend);
 
         return instance.setup({
@@ -44,10 +43,10 @@ export function configure(aurelia: Aurelia) {
             },
             attributes: aliases,
             lng: environment.defaultLocale,
-            ns: ['translation', 'headings', 'buttons'],
+            ns: ['translation', 'buttons', 'errors'],
             defaultNS: 'translation',
-            fallbackLng: 'en',
-            debug: false
+            fallbackLng: 'en-US',
+            debug: true
         });
     });
 
