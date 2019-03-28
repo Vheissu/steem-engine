@@ -1,8 +1,6 @@
-# `sto-kyc`
+# Steem Engine Projects
 
-This project is bootstrapped by [aurelia-cli](https://github.com/aurelia/cli).
-
-For more information, go to https://aurelia.io/docs/cli/webpack
+The Steem Engines projects and KYC handling.
 
 ## Run dev app
 
