@@ -1,3 +1,5 @@
 {
-    "docUploadFailed": "Failed to upload specific document(s)"
+    "docUploadFailed": "Failed to upload specific document(s)",
+    "firstName": "Please enter a first name",
+    "lastName": "Please enter a last name"
 }
