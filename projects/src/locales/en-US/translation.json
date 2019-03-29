@@ -29,5 +29,7 @@
     "entityInformationDescription": "If you are submitting this form on behalf of an entity (corporation, limited liability company, etc.), employee benefit plan or trust with assets of at least $5 million, please complete the following:",
     "entityName": "Name of entity, plan or trust",
     "entityState": "Name of state where entity, plan or trust was formed",
-    "notAnEntity": "I confirm I am not an entity"
+    "notAnEntity": "I confirm I am not an entity",
+    "businessName": "Business name",
+    "servicesInterested": "Services you are interested in"
 }
