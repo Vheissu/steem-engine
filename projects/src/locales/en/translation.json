@@ -31,5 +31,9 @@
     "entityState": "Name of state where entity, plan or trust was formed",
     "notAnEntity": "I confirm I am not an entity",
     "businessName": "Business name",
-    "servicesInterested": "Services you are interested in"
+    "servicesInterested": "Services you are interested in",
+    "entityBoxOption1": "The undersigned is a corporation, partnership, business trust or charitable organization with assets in excess of $5 million that was not formed to acquire securities offered by the company presenting this questionnaire;",
+    "entityBoxOption2": "The undersigned is a bank, a savings and loan association, a broker or dealer registered pursuant to Section 15 of the Securities Exchange Act of 1934, an insurance company, an investment company registered under the Investment Company Act of 1940, a business development company as defined in Section 2(a)(48) of that Act, a Small Business Investment Company licensed by the U.S. Small Business Administration under section 301(c) or (d) of the Small Business Investment Act of 1958, a private business development company as defined in Section 202(a)(22) of the Investment Advisors Act of 1940;",
+    "entityBoxOption3": "The undersigned is an employee benefit plan a) either established and maintained by a government entity or governed by the Employee Retirement Income Security act of 1974 (ERISA) and in either case with total assets in excess of $5 million, or b) governed by ERISA and where investment decisions are either made by a bank, savings and loan association, insurance company, or registered investment adviser or, if a self-directed plan, with investment decisions made solely by persons that are accredited investors;",
+    "entityBoxOption4": "The undersigned is a trust with assets of at least $5 million, not formed to acquire securities offered by the company presenting this questionnaire, and whose purchases are directed by a sophisticated person who, either alone or with his/her independent purchaser representative, has such knowledge and experience in financial and business matters that he/she is capable of evaluating the merits and risks of a prospective investment."
 }
