@@ -10,8 +10,8 @@
         <step-3 if.bind="state.investorQuestionnaire.currentStep == 3" step.bind="steps.step3"></step-3>
 
         <div class="container questionnaire-buttons text-right">
-            <button type="button" class="btn btn-secondary btn-lg" disabled.bind="state.investorQuestionnaire.currentStep == 1">${'previousStep' & t}</button>
-            <button type="submit" class="btn btn-primary btn-lg">${'nextStep' & t}</button>
+            <button type="button" class="btn btn-secondary btn-sm" disabled.bind="state.investorQuestionnaire.currentStep == 1">${'previousStep' & t}</button>
+            <button type="submit" class="btn btn-primary btn-sm">${'nextStep' & t}</button>
         </div>
 
     </form>
