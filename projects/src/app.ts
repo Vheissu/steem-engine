@@ -29,6 +29,12 @@ export class App {
                 title: 'Kyc'
             },
             {
+                route: 'pricing',
+                name: 'pricing',
+                moduleId: PLATFORM.moduleName('./routes/pricing'),
+                nav: true,
+                title: 'Pricing'
+            },
                 route: 'kyc/questionnaire',
                 name: 'questionnaire',
                 moduleId: PLATFORM.moduleName('./routes/kyc/investor-questionnaire'),

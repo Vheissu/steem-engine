@@ -1,0 +1,16 @@
+.pricing-header {
+    max-width: 750px;
+}
+
+.card-deck .card {
+    max-width: 350px;
+}
+
+.pricing-cost {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.pricing-list li {
+    margin-bottom: 20px;
+}
