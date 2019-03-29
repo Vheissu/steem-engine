@@ -41,13 +41,13 @@ export function configure(aurelia: Aurelia) {
 
         return instance.setup({
             backend: {
-                loadPath: './locales/{{lng}}/{{ns}}.json'
+                loadPath: 'locales/{{lng}}/{{ns}}.json'
             },
             attributes: aliases,
             lng: environment.defaultLocale,
             ns: ['translation', 'buttons', 'errors'],
             defaultNS: 'translation',
-            fallbackLng: 'en-US',
+            fallbackLng: 'en',
             debug: false
         });
     });
