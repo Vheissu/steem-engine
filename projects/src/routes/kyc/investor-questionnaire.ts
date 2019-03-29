@@ -27,7 +27,24 @@ export class InvestorQuestionnaire {
             notAnEntity: '',
             entityName: '',
             entityState: '',
-            entityBoxOptions: []
+            entityBoxOptions: [],
+            investmentObjectives: {
+                first: '',
+                second: '',
+                third: '',
+                fourth: ''
+            },
+            riskTolerance: {
+                first: '',
+                second: '',
+                third: ''
+            },
+            allowSpeculation: '',
+            education: '',
+            licenses: '',
+            jobExperience: '',
+            primarySourceIncome: '',
+            primaryInvestorExperience: []
         }
     };
 
