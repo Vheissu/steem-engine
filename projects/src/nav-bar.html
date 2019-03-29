@@ -1,5 +1,28 @@
 <template bindable="router">
-    <nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" role="navigation">
+        <nav class="navbar navbar-dark navbar-expand-lg navbar-steem-engine fixed-top">
+            <a class="navbar-brand" href="#" onclick="SE.ShowHome()"><img src="../../images/steem-engine_logo-horizontal.svg"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="navbar-nav w-100 justify-content-end align-items-center">
+                    <a class="nav-item nav-link ${row.isActive ? 'active' : ''}" repeat.for="row of router.navigation" href.bind="row.href">${row.title}</a>
+            
+                    <button id="btnSignIn" class="btn" onclick="SE.ShowSignIn();" style="margin-left: 50px; display: none;">SIGN IN</button>
+            
+                    <div id="ddlLoggedIn" class="nav-item dropdown" style="margin-left: 40px;">
+                        <a class="nav-link dropdown-toggle p-0" href="#" id="lnkUsername" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@beggars</a>
+                        <div class="dropdown-menu" aria-labelledby="lnkUsername">
+                        <a class="dropdown-item" onclick="SE.LogOut();">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+
+    <!-- <nav class="navbar navbar-expand navbar-dark flex-column flex-md-row bd-navbar" role="navigation">
         <a class="navbar-brand mr-0 mr-md-2" href="javascript:void(0);" aria-label="${router.title}">
             ${router.title}
         </a>
@@ -11,5 +34,5 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 </template>
