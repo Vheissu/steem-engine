@@ -15,3 +15,7 @@ body > .container-fluid {
 .step-element {
     display: block;
 }
+
+label {
+    font-size: 1.01rem;
+}
