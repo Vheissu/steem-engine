@@ -38,6 +38,7 @@ export class InvestorQuestionnaire {
         @newInstance() private step3Controller: ValidationController,
     ) {
         this.store.registerAction('nextStep', this.nextStep);
+        this.store.registerAction('previousStep', this.previousStep);
         this.store.registerAction('setTotalSteps', this.setTotalSteps);
 
         this.renderer = new BootstrapFormRenderer();
@@ -93,6 +94,10 @@ export class InvestorQuestionnaire {
         this.store.dispatch('nextStep');
     }
 
+    goToPreviousStep() {
+        this.store.dispatch('previousStep');
+    }
+
     setTotalSteps(state: State, total: number) {
         const newState = { ...state };
 
@@ -109,6 +114,19 @@ export class InvestorQuestionnaire {
 
         if ( (currentStep + 1) <= totalSteps ) {
             newState.investorQuestionnaire.currentStep++;
+        }
+
+        return newState;
+    }
+
+    previousStep(state: State) {
+        const newState = { ...state };
+        
+        const currentStep = newState.investorQuestionnaire.currentStep;
+        const totalSteps = newState.investorQuestionnaire.totalSteps;
+
+        if ( (currentStep - 1) > 0 ) {
+            newState.investorQuestionnaire.currentStep--;
         }
 
         return newState;
