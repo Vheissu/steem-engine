@@ -1,6 +1,6 @@
 import { BootstrapFormRenderer } from './../../resources/bootstrap-form-renderer';
 import { Store, connectTo } from 'aurelia-store';
-import { autoinject, NewInstance, newInstance } from 'aurelia-framework';
+import { autoinject, NewInstance, newInstance, computedFrom } from 'aurelia-framework';
 import { ValidationController } from 'aurelia-validation';
 import { State } from 'store/state';
 
@@ -147,5 +147,16 @@ export class InvestorQuestionnaire {
         }
 
         return newState;
+    }
+
+    @computedFrom('state.investorQuestionnaire.currentStep')
+    get isLastStep() {
+        if (typeof this.state !== 'undefined') {
+            if (this.state.investorQuestionnaire.currentStep + 1 > this.state.investorQuestionnaire.totalSteps) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -11,7 +11,7 @@
 
         <div class="container questionnaire-buttons text-right mb-5 mt-3">
             <button type="button" class="btn btn-secondary btn-sm" click.delegate="goToPreviousStep()" disabled.bind="state.investorQuestionnaire.currentStep == 1">${'previousStep' & t}</button>
-            <button type="submit" class="btn btn-primary btn-sm">${'nextStep' & t}</button>
+            <button type="submit" class="btn btn-primary btn-sm">${!isLastStep ? 'nextStep' : 'completeStep' & t}</button>
         </div>
 
     </form>
