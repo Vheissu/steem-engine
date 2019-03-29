@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
+import '../../styles/main.css';
 import './styles/main.css';
 
 import { PLATFORM } from 'aurelia-pal';

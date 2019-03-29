@@ -1,11 +1,10 @@
-.navbar-dark {
-    background: #333;
-    border-radius: 0;
-    color: #FFF;
+body {
+    color: #27475E;
+    text-align: left;
 }
 
-.navbar-dark a {
-    color: inherit;
+body > .container-fluid {
+    margin-top: 90px;
 }
 
 .asterisk {
