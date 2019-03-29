@@ -9,7 +9,7 @@
         <step-2 if.bind="state.investorQuestionnaire.currentStep == 2" step.bind="steps.step2" controller.bind="step2Controller"></step-2>
         <step-3 if.bind="state.investorQuestionnaire.currentStep == 3" step.bind="steps.step3" controller.bind="step3Controller"></step-3>
 
-        <div class="container questionnaire-buttons text-right">
+        <div class="container questionnaire-buttons text-right mb-5 mt-3">
             <button type="button" class="btn btn-secondary btn-sm" disabled.bind="state.investorQuestionnaire.currentStep == 1">${'previousStep' & t}</button>
             <button type="submit" class="btn btn-primary btn-sm">${'nextStep' & t}</button>
         </div>
