@@ -5,12 +5,16 @@
                 <p>${'entityInformationDescription' & t}</p>
                 <p>If you are <strong>NOT</strong> an entity as described above, please check the following checkbox to proceed to the next step.</p>
                 <div class="form-group">
-                        <label for="notAnEntity">${'notAnEntity' & t} <span class="asterisk text-danger">*</span></label>
-                        <input type="checkbox" class="form-control" id="notAnEntity" name="notAnEntity" checked.bind="step.notAnEntity">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="notAnEntity" name="notAnEntity" checked.bind="step.notAnEntity">
+                        <label class="custom-control-label" for="notAnEntity">${'notAnEntity' & t} <span class="asterisk text-danger">*</span></label>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <hr if.bind="!step.notAnEntity" />
     
     <div class="row" if.bind="!step.notAnEntity">
         <div class="col-md-6">
