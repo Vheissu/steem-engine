@@ -5,9 +5,9 @@
 
     <form submit.trigger="formSubmit($event)" novalidate="">
 
-        <step-1 if.bind="state.investorQuestionnaire.currentStep == 1" step.bind="steps.step1"></step-1>
-        <step-2 if.bind="state.investorQuestionnaire.currentStep == 2" step.bind="steps.step2"></step-2>
-        <step-3 if.bind="state.investorQuestionnaire.currentStep == 3" step.bind="steps.step3"></step-3>
+        <step-1 if.bind="state.investorQuestionnaire.currentStep == 1" step.bind="steps.step1" controller.bind="step1Controller"></step-1>
+        <step-2 if.bind="state.investorQuestionnaire.currentStep == 2" step.bind="steps.step2" controller.bind="step2Controller"></step-2>
+        <step-3 if.bind="state.investorQuestionnaire.currentStep == 3" step.bind="steps.step3" controller.bind="step3Controller"></step-3>
 
         <div class="container questionnaire-buttons text-right">
             <button type="button" class="btn btn-secondary btn-sm" disabled.bind="state.investorQuestionnaire.currentStep == 1">${'previousStep' & t}</button>

@@ -1,4 +1,4 @@
-<template class="container step-element" bindable="step">
+<template class="container step-element" bindable="step, controller">
     <div class="row">
         <div class="col-md-12">
                 <h3>${'entityInformation' & t}</h3>
@@ -20,12 +20,12 @@
         <div class="col-md-6">
             <div class="form-group">
                 <label for="entityName">${'entityName' & t} <span class="asterisk text-danger">*</span></label>
-                <input type="text" class="form-control" id="entityName" name="entityName" placeholder="Eg. John" value.bind="step.entityName & validate:step3Controller">
+                <input type="text" class="form-control" id="entityName" name="entityName" placeholder="Eg. John" value.bind="step.entityName & validate:controller">
             </div>
     
             <div class="form-group">
                 <label>${'entityState' & t} <span class="asterisk text-danger">*</span></label>
-                <input type="text" class="form-control" placeholder="Eg. Kennedy" value.bind="step.entityState & validate:step3Controller">
+                <input type="text" class="form-control" placeholder="Eg. Kennedy" value.bind="step.entityState & validate:controller">
             </div>
         </div>
     </div>
