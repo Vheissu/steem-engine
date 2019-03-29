@@ -26,7 +26,8 @@ export class InvestorQuestionnaire {
         step3: {
             notAnEntity: '',
             entityName: '',
-            entityState: ''
+            entityState: '',
+            entityBoxOptions: []
         }
     };
 
