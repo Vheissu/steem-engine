@@ -19,3 +19,31 @@ body > .container-fluid {
 label {
     font-size: 1.01rem;
 }
+
+.header-pull {
+    margin-bottom: 30px;
+    margin-top: -30px;
+    position: relative;
+}
+
+#progressbar {
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+}
+
+#progressbar ul,
+#progressbar li {
+    list-style: none;
+    margin: 0;
+}
+
+#progressbar li {
+    margin-right: 50px;
+}
+
+#progressbar .active {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+}

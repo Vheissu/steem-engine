@@ -3,6 +3,14 @@
     <require from="./step-2.html"></require>
     <require from="./step-3.html"></require>
 
+    <header class="row header-pull">
+        <ul id="progressbar" class="container">
+            <li class="${state.investorQuestionnaire.currentStep >= 1 ? 'active' : ''}">Personal Details</li>  
+            <li class="${state.investorQuestionnaire.currentStep >= 2 ? 'active' : ''}">Communication Method</li> 
+            <li class="${state.investorQuestionnaire.currentStep >= 3 ? 'active' : ''}">Entity Information</li>
+        </ul>
+    </header>
+
     <form submit.trigger="formSubmit($event)" novalidate="">
 
         <step-1 if.bind="state.investorQuestionnaire.currentStep == 1" step.bind="steps.step1" controller.bind="step1Controller"></step-1>
