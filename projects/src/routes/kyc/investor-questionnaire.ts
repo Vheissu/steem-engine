@@ -7,6 +7,7 @@ import { State } from 'store/state';
 import { Step1Rules } from './step-1.rules';
 import { Step2Rules } from './step-2.rules';
 import { Step3Rules } from './step-3.rules';
+import { Step4Rules } from './step-4.rules';
 
 @connectTo()
 @autoinject()
@@ -45,6 +46,9 @@ export class InvestorQuestionnaire {
             jobExperience: '',
             primarySourceIncome: '',
             primaryInvestorExperience: []
+        },
+        step4: {
+
         }
     };
 
@@ -53,6 +57,7 @@ export class InvestorQuestionnaire {
         @newInstance() private step1Controller: ValidationController,
         @newInstance() private step2Controller: ValidationController,
         @newInstance() private step3Controller: ValidationController,
+        @newInstance() private step4Controller: ValidationController,
     ) {
         this.store.registerAction('nextStep', this.nextStep);
         this.store.registerAction('previousStep', this.previousStep);
@@ -63,10 +68,12 @@ export class InvestorQuestionnaire {
         this.step1Controller.addRenderer(this.renderer);
         this.step2Controller.addRenderer(this.renderer);
         this.step3Controller.addRenderer(this.renderer);
+        this.step4Controller.addRenderer(this.renderer);
 
         this.step1Controller.addObject(this.steps.step1, Step1Rules);
         this.step2Controller.addObject(this.steps.step2, Step2Rules);
         this.step3Controller.addObject(this.steps.step3, Step3Rules);
+        this.step4Controller.addObject(this.steps.step4, Step4Rules);
     }
 
     attached() {
@@ -90,18 +97,28 @@ export class InvestorQuestionnaire {
             if (!result.valid) {
                 return;
             }
+
+            this.progressStep.value = 33;
         } else if (currentStep === 2) {
             const result = await this.step2Controller.validate();
+
+            if (!result.valid) {
+                return;
+            }
+
+            this.progressStep.value = 66;
+        } else if (currentStep === 3) {
+            const result = await this.step3Controller.validate();
 
             console.log(result);
 
             if (!result.valid) {
                 return;
             }
-        } else if (currentStep === 3) {
-            const result = await this.step3Controller.validate();
 
-            console.log(result);
+            this.progressStep.value = 100;
+        } else if (currentStep === 4) {
+            const result = await this.step4Controller.validate();
 
             if (!result.valid) {
                 return;

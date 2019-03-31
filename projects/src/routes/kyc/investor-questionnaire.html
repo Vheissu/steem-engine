@@ -2,6 +2,7 @@
     <require from="./step-1.html"></require>
     <require from="./step-2.html"></require>
     <require from="./step-3.html"></require>
+    <require from="./step-4.html"></require>
 
     <header class="row header-pull">
         <ul id="progressbar" class="container">
@@ -16,6 +17,7 @@
         <step-1 if.bind="state.investorQuestionnaire.currentStep == 1" step.bind="steps.step1" controller.bind="step1Controller"></step-1>
         <step-2 if.bind="state.investorQuestionnaire.currentStep == 2" step.bind="steps.step2" controller.bind="step2Controller"></step-2>
         <step-3 if.bind="state.investorQuestionnaire.currentStep == 3" step.bind="steps.step3" controller.bind="step3Controller"></step-3>
+        <step-4 if.bind="state.investorQuestionnaire.currentStep == 4" step.bind="steps.step4" controller.bind="step4Controller"></step-4>
 
         <div class="container questionnaire-buttons text-right mb-5 mt-3">
             <button type="button" class="btn btn-secondary btn-sm" click.delegate="goToPreviousStep()" disabled.bind="state.investorQuestionnaire.currentStep == 1">${'previousStep' & t}</button>
