@@ -26,24 +26,70 @@ label {
     position: relative;
 }
 
-#progressbar {
-    align-items: center;
-    display: flex;
-    overflow: hidden;
-    width: 100%;
+.form-progress {
+	position: relative;
+	display: block;
+    margin: 4rem auto;
+    padding: 0;
+	width: 100%;
 }
 
-#progressbar ul,
-#progressbar li {
-    list-style: none;
-    margin: 0;
+progress { 
+	display: block;
+	position: relative;
+	top: 5px;
+	left: 5px;
+	appearance: none;
+	background: #0bcc6c;
+	width: 100%;
+	height: 5px;
+	background: none;
+	transition: 1s;
+    will-change: contents;
 }
 
-#progressbar li {
-    margin-right: 50px;
+progress::-webkit-progress-bar {
+    background-color: #26455B;
+}
+	
+progress::-webkit-progress-value {
+    background-color: #FFF;
+    transition: all 0.5s ease-in-out;
 }
 
-#progressbar .active {
-    color: rgba(255, 255, 255, 0.5);
-    font-weight: bold;
+.progress-indicator {
+	position: absolute;
+	top: -6px;
+	left: 0;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background: #3c516b;
+	border: 2px solid #26455B;
+	border-radius: 50%;
+	transition: all .2s ease-in-out;
+	transition-delay: .3s;
+    will-change: transform;
+}
+
+.progress-one {
+    left: 0;
+}
+
+.progress-two {
+    left: 33%;
+}
+
+.progress-three {
+    left: 66%;
+}
+.progress-four {
+    left: 100%;
+}
+
+.progress-indicator.active {
+    animation: bounce .5s forwards;
+    animation-delay: .5s;
+    background: #FFF;
+    border-color: #FFF;
 }

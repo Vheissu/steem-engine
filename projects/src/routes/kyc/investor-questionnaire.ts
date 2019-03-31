@@ -14,6 +14,7 @@ import { Step4Rules } from './step-4.rules';
 export class InvestorQuestionnaire {
     private state: State;
     private renderer;
+    private progressStep: HTMLProgressElement;
 
     private steps = {
         step1: {

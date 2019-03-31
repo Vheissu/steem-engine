@@ -5,11 +5,13 @@
     <require from="./step-4.html"></require>
 
     <header class="row header-pull">
-        <ul id="progressbar" class="container">
-            <li class="${state.investorQuestionnaire.currentStep >= 1 ? 'active' : ''}">Personal Details</li>  
-            <li class="${state.investorQuestionnaire.currentStep >= 2 ? 'active' : ''}">Communication Method</li> 
-            <li class="${state.investorQuestionnaire.currentStep >= 3 ? 'active' : ''}">Entity Information</li>
-        </ul>
+        <div class="form-progress container">
+            <progress class="form-progress-bar" min="0" max="100" value="0" step="33" aria-labelledby="form-progress-completion" ref="progressStep"></progress>
+            <div class="progress-indicator progress-one ${state.investorQuestionnaire.currentStep >= 1 ? 'active' : ''}"></div>  
+            <div class="progress-indicator progress-two ${state.investorQuestionnaire.currentStep >= 2 ? 'active' : ''}"></div>
+            <div class="progress-indicator progress-three ${state.investorQuestionnaire.currentStep >= 3 ? 'active' : ''}"></div>
+            <div class="progress-indicator progress-four ${state.investorQuestionnaire.currentStep >= 4 ? 'active' : ''}"></div>
+        </div>
     </header>
 
     <form submit.trigger="formSubmit($event)" novalidate="">
