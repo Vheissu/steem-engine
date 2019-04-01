@@ -23,6 +23,13 @@ export class App {
                 title: 'Home'
             },
             {
+                route: 'projects/:project?',
+                name: 'projects',
+                moduleId: PLATFORM.moduleName('./routes/projects/projects'),
+                nav: false,
+                title: 'Projects'
+            },
+            {
                 route: 'balances/:user?',
                 name: 'balances',
                 moduleId: PLATFORM.moduleName('./routes/balances'),
