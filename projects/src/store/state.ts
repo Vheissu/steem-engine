@@ -1,23 +1,11 @@
 export interface State {
   loggedIn: boolean;
+  
   user: {
-      id: number;
       name: string;
-      balance: string;
-      sbd_balance: string;
-      can_vote: boolean;
-      post_count: number;
-      voting_power: number;
-      json_metadata?: any;
-      voting_manabar: {
-        current_mana: string;
-        last_update_time: number;
-      };
-      reputation: any;
-      valueInUsd: number;
+      balances: any[];
   };
 
-  balances: any;
   token: any;
 
   investorQuestionnaire: {
@@ -29,22 +17,9 @@ export interface State {
 export const initialState: State = {
   loggedIn: false,
   user: {
-      id: null,
       name: '',
-      balance: '',
-      sbd_balance: '',
-      can_vote: false,
-      post_count: 0,
-      voting_power: 0,
-      json_metadata: {},
-      voting_manabar: {
-        current_mana: '',
-        last_update_time: 0
-      },
-      reputation: 0,
-      valueInUsd: 0
+      balances: []
   },
-  balances: {},
   token: 0,
   investorQuestionnaire: {
       currentStep: 1,

@@ -19,30 +19,9 @@ export async function logout(state: State): Promise<State> {
     newState.loggedIn = false;
 
     newState.user = {
-        id: null,
-        name: '',
-        balance: '',
-        sbd_balance: '',
-        can_vote: false,
-        post_count: 0,
-        voting_power: 0,
-        voting_manabar: {
-            current_mana: '0',
-            last_update_time: 0
-        },
-        reputation: 0,
-        valueInUsd: 0
+        name: null,
+        balances: []
     };
-
-    localStorage.clear();
-
-    return newState;
-}
-
-export async function setUserMeta(state: State, data: any): Promise<State> {
-    let newState = { ...state };
-
-    newState.user = data;
 
     return newState;
 }
@@ -52,7 +31,7 @@ export async function loadBalances(state: State, username: string): Promise<Stat
 
     const balances = await SE.loadBalances(username);
 
-    newState.balances = balances;
+    newState.user.balances = balances;
 
     return newState;
 }
@@ -60,8 +39,8 @@ export async function loadBalances(state: State, username: string): Promise<Stat
 export async function getToken(state: State, token: string) {
     let newState = { ...state };
     
-    if (newState.balances) {
-        const token = newState.balances.find(b => b.symbol === token);
+    if (newState.user.balances) {
+        const token = newState.user.balances.find(b => b.symbol === token);
         newState.token = token ? parseFloat(token.balance) : 0;
     } else {
         newState.token = 0;
@@ -72,6 +51,5 @@ export async function getToken(state: State, token: string) {
 
 store.registerAction('login', login);
 store.registerAction('logout', logout);
-store.registerAction('setUserMeta', setUserMeta);
 store.registerAction('loadBalances', loadBalances);
 store.registerAction('getToken', getToken);
