@@ -5,5 +5,8 @@
     "contactMethod": "Please select a contact method for communication",
     "contactMethodAlternative": "Please enter an alternative method for communication",
     "entityName": "Please enter the name of an entity, plan or trust",
-    "entityState": "Please enter the name of the state, where the entity, plan or trust was formed"
+    "entityState": "Please enter the name of the state, where the entity, plan or trust was formed",
+    "errorLogin": "Unable to log in with the @{username} account.",
+    "errorLoading": "There was an error loading the @{username} account.",
+    "invalidPrivateKeyOrPassword": "Invalid private key or master password."
 }
