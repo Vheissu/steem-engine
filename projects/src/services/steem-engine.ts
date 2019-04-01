@@ -9,6 +9,7 @@ import steem from 'steem';
 import { logout } from 'store/actions';
 
 import { ToastService, ToastMessage } from './toast-service';
+import { queryParam } from 'common/functions';
 
 @connectTo()
 export class SteemEngine {
@@ -30,8 +31,11 @@ export class SteemEngine {
         });
     }
 
-    request(url: string) {
-        url = url + `?v=${new Date().getTime()}`;
+    request(url: string, params: any) {
+        // Cache buster
+        params.v = new Date().getTime();
+
+        url = url + queryParam(params);
 
         this.http.fetch(url, {
             method: 'GET'
