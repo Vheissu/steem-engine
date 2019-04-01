@@ -1,3 +1,4 @@
+import { I18N } from 'aurelia-i18n';
 import { State } from 'store/state';
 import { HttpClient } from 'aurelia-fetch-client';
 import { lazy } from 'aurelia-framework';
@@ -7,13 +8,18 @@ import { connectTo, dispatchify } from 'aurelia-store';
 import steem from 'steem';
 import { logout } from 'store/actions';
 
+import { ToastService, ToastMessage } from './toast-service';
+
 @connectTo()
 export class SteemEngine {
     private http: HttpClient;
     private ssc;
     private state: State;
 
-    constructor(@lazy(HttpClient) private getHttpClient: () => HttpClient) {
+    constructor(
+        @lazy(HttpClient) private getHttpClient: () => HttpClient,
+        private i18n: I18N,
+        private toast: ToastService) {
         this.http = getHttpClient();
         this.ssc = new SSC(environment.RPC_URL);
 
@@ -35,8 +41,15 @@ export class SteemEngine {
     async login(username: string, key: string) {
         if (window.steem_keychain && !key) {
 		    steem_keychain.requestSignBuffer(username, 'Log In', 'Posting', function(response) {
-				if(response.error) {
-                    //SE.ShowToast(false, 'Unable to log in with the @' + username + ' account.');
+				if (response.error) {
+                    const toast = new ToastMessage();
+
+                    toast.message = this.i18n.tr('errorLogin', { 
+                        username, 
+                        ns: 'errors' 
+                    });
+
+                    this.toast.error(toast);
 				} else {
 					localStorage.setItem('username', username);
 					window.location.reload();
@@ -48,7 +61,13 @@ export class SteemEngine {
 					key = steem.auth.getPrivateKeys(username, key, ['posting']).posting;
 				}
 			} catch(err) {
-                //SE.ShowToast(false, 'Invalid private key or master password.');
+                const toast = new ToastMessage();
+
+                toast.message = this.i18n.tr('invalidPrivateKeyOrPassword', { 
+                    ns: 'errors' 
+                });
+
+                this.toast.error(toast);
 				return;
             }
 
@@ -62,13 +81,31 @@ export class SteemEngine {
 							localStorage.setItem('key', key);
 							window.location.reload();
 						} else {
-                            //SE.ShowToast(false, 'Unable to log in with the @' + username + ' account. Invalid private key or password.');
+                            const toast = new ToastMessage();
+
+                            toast.message = this.i18n.tr('errorLogin', { 
+                                ns: 'errors' 
+                            });
+            
+                            this.toast.error(toast);
 						}
 					} catch(err) {
-                        //SE.ShowToast(false, 'Unable to log in with the @' + username + ' account. Invalid private key or password.');
+                        const toast = new ToastMessage();
+
+                        toast.message = this.i18n.tr('errorLogin', { 
+                            ns: 'errors' 
+                        });
+        
+                        this.toast.error(toast);
 					}
                 } else {
-                    //SE.ShowToast(false, 'There was an error loading the @' + username + ' account.');
+                    const toast = new ToastMessage();
+
+                    toast.message = this.i18n.tr('errorLoading', { 
+                        ns: 'errors' 
+                    });
+    
+                    this.toast.error(toast);
                 }
             } catch (e) {
                 return;
