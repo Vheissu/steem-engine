@@ -16,8 +16,22 @@ body > .container-fluid {
     display: block;
 }
 
+fieldset {
+    border: 1px solid rgba(158, 204, 250, 0.45);
+    padding: 12px 25px;
+}
+
 label {
     font-size: 1.01rem;
+}
+
+.form-control {
+    border-color: rgba(158, 204, 250, 0.45);
+}
+
+.form-control:focus {
+    border-color: #4C9BFB;
+    box-shadow: none !important;
 }
 
 .header-pull {
