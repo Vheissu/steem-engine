@@ -35,6 +35,10 @@ label {
     box-shadow: none !important;
 }
 
+.btn:focus {
+    box-shadow: none !important;
+}
+
 .header-pull {
     margin-bottom: 30px;
     margin-top: -30px;
