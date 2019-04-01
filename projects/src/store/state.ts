@@ -17,6 +17,9 @@ export interface State {
       valueInUsd: number;
   };
 
+  balances: any;
+  token: any;
+
   investorQuestionnaire: {
       currentStep: number;
       totalSteps: number;
@@ -41,6 +44,8 @@ export const initialState: State = {
       reputation: 0,
       valueInUsd: 0
   },
+  balances: {},
+  token: 0,
   investorQuestionnaire: {
       currentStep: 1,
       totalSteps: 1
