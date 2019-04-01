@@ -22,6 +22,13 @@ export class App {
                 title: 'Home'
             },
             {
+                route: 'balances/:user?',
+                name: 'balances',
+                moduleId: PLATFORM.moduleName('./routes/balances'),
+                nav: false,
+                title: 'Balances'
+            },
+            {
                 route: 'kyc',
                 name: 'kyc',
                 moduleId: PLATFORM.moduleName('./routes/kyc/landing'),
