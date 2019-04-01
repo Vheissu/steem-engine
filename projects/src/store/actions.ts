@@ -34,6 +34,8 @@ export async function logout(state: State): Promise<State> {
         valueInUsd: 0
     };
 
+    localStorage.clear();
+
     return newState;
 }
 
