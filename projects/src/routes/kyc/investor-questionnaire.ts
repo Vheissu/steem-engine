@@ -1,7 +1,8 @@
 import { BootstrapFormRenderer } from './../../resources/bootstrap-form-renderer';
-import { Store, connectTo } from 'aurelia-store';
-import { autoinject, NewInstance, newInstance, computedFrom } from 'aurelia-framework';
+import { Store } from 'aurelia-store';
+import { autoinject, newInstance, computedFrom } from 'aurelia-framework';
 import { ValidationController } from 'aurelia-validation';
+import { Subscription } from 'rxjs';
 import { State } from 'store/state';
 
 import { Step1Rules } from './step-1.rules';
@@ -9,12 +10,12 @@ import { Step2Rules } from './step-2.rules';
 import { Step3Rules } from './step-3.rules';
 import { Step4Rules } from './step-4.rules';
 
-@connectTo()
 @autoinject()
 export class InvestorQuestionnaire {
     private state: State;
     private renderer;
     private progressStep: HTMLProgressElement;
+    private subscription: Subscription;
 
     private steps = {
         step1: {
@@ -77,6 +78,24 @@ export class InvestorQuestionnaire {
         this.step4Controller.addObject(this.steps.step4, Step4Rules);
     }
 
+    bind() {
+        this.subscription = this.store.state.subscribe((state: State) => {
+            this.state = state;
+           
+            const currentStep = state.investorQuestionnaire.currentStep;
+
+            if (currentStep === 1) {
+                this.progressStep.value = 0;
+            } else if (currentStep === 2) {
+                this.progressStep.value = 33;
+            } else if (currentStep === 3) {
+                this.progressStep.value = 66;
+            } else if (currentStep === 4) {
+                this.progressStep.value = 100;
+            }
+        });
+    }
+
     attached() {
         this.store.dispatch('setTotalSteps', (Object.keys(this.steps).length));
     }
@@ -98,16 +117,12 @@ export class InvestorQuestionnaire {
             if (!result.valid) {
                 return;
             }
-
-            this.progressStep.value = 33;
         } else if (currentStep === 2) {
             const result = await this.step2Controller.validate();
 
             if (!result.valid) {
                 return;
             }
-
-            this.progressStep.value = 66;
         } else if (currentStep === 3) {
             const result = await this.step3Controller.validate();
 
@@ -116,8 +131,6 @@ export class InvestorQuestionnaire {
             if (!result.valid) {
                 return;
             }
-
-            this.progressStep.value = 100;
         } else if (currentStep === 4) {
             const result = await this.step4Controller.validate();
 
