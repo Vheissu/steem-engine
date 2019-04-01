@@ -1,3 +1,4 @@
+import { dispatchify, rehydrateFromLocalStorage } from 'aurelia-store';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import '../../styles/main.css';
@@ -59,5 +60,9 @@ export class App {
         ]);
 
         this.router = router;
+    }
+
+    attached() {
+        dispatchify(rehydrateFromLocalStorage)();
     }
 }
