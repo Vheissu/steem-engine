@@ -7,6 +7,7 @@ export interface State {
   };
 
   token: any;
+  tokens: any[];
 
   investorQuestionnaire: {
       currentStep: number;
@@ -21,6 +22,7 @@ export const initialState: State = {
       balances: []
   },
   token: 0,
+  tokens: [],
   investorQuestionnaire: {
       currentStep: 1,
       totalSteps: 1

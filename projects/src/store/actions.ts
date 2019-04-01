@@ -36,6 +36,16 @@ export async function loadBalances(state: State, username: string): Promise<Stat
     return newState;
 }
 
+export async function loadTokens(state: State): Promise<State> {
+    let newState = { ...state };
+
+    const tokens = await SE.loadTokens();
+
+    newState.tokens = tokens;
+
+    return newState;
+}
+
 export async function getToken(state: State, token: string) {
     let newState = { ...state };
     
@@ -52,4 +62,5 @@ export async function getToken(state: State, token: string) {
 store.registerAction('login', login);
 store.registerAction('logout', logout);
 store.registerAction('loadBalances', loadBalances);
+store.registerAction('loadTokens', loadTokens);
 store.registerAction('getToken', getToken);
