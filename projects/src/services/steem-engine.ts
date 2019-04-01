@@ -9,7 +9,7 @@ import steem from 'steem';
 import { logout } from 'store/actions';
 
 import { ToastService, ToastMessage } from './toast-service';
-import { queryParam } from 'common/functions';
+import { queryParam, popupCenter } from 'common/functions';
 
 @connectTo()
 export class SteemEngine {
@@ -121,6 +121,25 @@ export class SteemEngine {
         dispatchify(logout)();
     }
 
+    steemConnectJson(auth_type, data) {
+        return new Promise((resolve, reject) => {
+            const username = this.state.user.name;
+            let url = 'https://steemconnect.com/sign/custom-json?';
+
+            if (auth_type == 'active') {
+                url += 'required_posting_auths=' + encodeURI('[]');
+                url += '&required_auths=' + encodeURI('["' + username + '"]');
+            } else {
+                url += 'required_posting_auths=' + encodeURI('["' + username + '"]');
+            }
+    
+            url += '&id=' + environment.CHAIN_ID;
+            url += '&json=' + encodeURI(JSON.stringify(data));
+    
+            popupCenter(url, 'steemconnect', 500, 560);
+        });
+    }
+
     async getAccount(username: string) {
         try {
             const user = await steem.api.getAccountsAsync([username]); 
@@ -140,4 +159,16 @@ export class SteemEngine {
         
     //     const history = await this.request('/history', { account: this.state.user.name, limit: 100, offset: 0, type: 'user', symbol: symbol });
     // }
+
+    issueToken(symbol, to, quantity) {
+        const transaction_data = {
+            'contractName': 'tokens',
+            'contractAction': 'issue',
+            'contractPayload': {
+                'symbol': symbol,
+                'to': to,
+                'quantity': quantity
+            }
+        };
+    }
 }
