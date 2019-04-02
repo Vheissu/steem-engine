@@ -89,6 +89,10 @@ export class InvestorQuestionnaire {
         });
     }
 
+    unbind() {
+        this.subscription.unsubscribe();
+    }
+
     attached() {
         this.store.dispatch('setTotalSteps', (Object.keys(this.steps).length));
 
