@@ -30,9 +30,13 @@ export async function logout(state: State): Promise<State> {
 export async function loadBalances(state: State, username: string): Promise<State> {
     let newState = { ...state };
 
-    const balances = await SE.loadBalances(username);
+    try {
+        const balances = await SE.loadBalances(username);
 
-    newState.user.balances = balances;
+        newState.user.balances = balances;
+    } catch (e) {
+        return newState;
+    }
 
     return newState;
 }
@@ -40,9 +44,13 @@ export async function loadBalances(state: State, username: string): Promise<Stat
 export async function loadTokens(state: State): Promise<State> {
     let newState = { ...state };
 
-    const tokens = await SE.loadTokens();
+    try {
+        const tokens = await SE.loadTokens();
 
-    newState.tokens = tokens;
+        newState.tokens = tokens;
+    } catch (e) {
+        return newState;
+    }
 
     return newState;
 }
