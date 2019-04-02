@@ -90,15 +90,17 @@ export class App {
                 route: 'projects/:project?',
                 name: 'projects',
                 moduleId: PLATFORM.moduleName('./routes/projects/projects'),
-                nav: false,
+                nav: true,
+                href: '/projects',
                 title: 'Projects'
             },
             {
                 route: 'balances/:user?',
-                name: 'balances',
+                name: 'wallet',
                 moduleId: PLATFORM.moduleName('./routes/balances'),
-                nav: false,
-                title: 'Balances'
+                nav: true,
+                href: '/balances',
+                title: 'Wallet'
             },
             {
                 route: 'sign-in',
