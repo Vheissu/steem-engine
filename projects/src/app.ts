@@ -1,4 +1,6 @@
-import { dispatchify, rehydrateFromLocalStorage } from 'aurelia-store';
+import { State } from 'store/state';
+import { dispatchify, Store, rehydrateFromLocalStorage } from 'aurelia-store';
+
 import { PreRenderStep } from './resources/pipeline-steps/prerender';
 import { PostRenderStep } from './resources/pipeline-steps/postrender';
 
@@ -10,12 +12,18 @@ import '../../styles/main.css';
 import './styles/main.css';
 
 import { PLATFORM } from 'aurelia-pal';
+import { autoinject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
-import environment from 'environment';
-import { loadTokens } from 'store/actions';
 
+import environment from 'environment';
+
+@autoinject()
 export class App {
     public router: Router;
+
+    constructor(private store: Store<State>) {
+        this.store.registerAction('Rehydrate', rehydrateFromLocalStorage);
+    }
 
     public configureRouter(config: RouterConfiguration, router: Router) {
         config.title = environment.siteName;
@@ -77,6 +85,6 @@ export class App {
     }
 
     attached() {
-        dispatchify(rehydrateFromLocalStorage)();
+        this.store.dispatch(rehydrateFromLocalStorage);
     }
 }
