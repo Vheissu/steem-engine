@@ -1,59 +1,62 @@
+import { SymbolCellRenderer } from './../common/cell-renderers/symbol-renderer';
+import { SteemEngine } from './../services/steem-engine';
 import { State } from 'store/state';
-import { dispatchify, connectTo, Store } from 'aurelia-store';
-import { loadBalances, loadTokens } from 'store/actions';
-
-import { pluck, map } from 'rxjs/operators';
+import { dispatchify, Store } from 'aurelia-store';
+import { loadBalances } from 'store/actions';
 
 import { GridOptions } from 'ag-grid-community';
-import { usdFormat } from 'common/functions';
 import { autoinject } from 'aurelia-framework';
+import { addCommas } from 'common/functions';
 
 @autoinject()
 export class Balances {
     private username = null;
     private state: State;
     private gridOptions: GridOptions;
+    private gridApi: any;
+    private columnDefs = [];
+    private rowData = [];
 
-    constructor(private store: Store<State>) {
+    constructor(private store: Store<State>, private SE: SteemEngine) {
         this.gridOptions = <GridOptions>{};
 
-        this.gridOptions.columnDefs = [
-            {headerName: 'Name', field: 'name', sortable: true },
-            {headerName: 'Last Price', field: 'lastPrice', sortable: true },
-            {headerName: '% Changed', field: 'priceChangePercent', sortable: true },
-            {headerName: 'USD Value', field: 'usdValue', sortable: true },
-        ];
+        this.gridOptions.onGridReady = (params) => {
+            this.gridApi = params.api;
+            this.initGrid();
+        };
+    }
 
-        this.gridOptions.defaultColDef = {
-            filter: true,
-            menuTabs: ['filterMenuTab']
-        }
+    initGrid() {
+        this.columnDefs = [
+            { headerName: 'Symbol', field: 'symbol', cellRenderer: SymbolCellRenderer, sortable: true },
+            { headerName: 'Token Name', field: 'name', sortable: true },
+            { headerName: 'Balance', field: 'balance', sortable: true },
+            { headerName: 'USD Value', field: 'usdValue', sortable: true },
+            { headerName: '% Chg', field: 'priceChangePercent', sortable: true }
+        ];
     }
 
     bind() {
         this.store.state.subscribe((state: State) => {
             this.state = state;
 
-            this.state.user.balances = this.state.user.balances.map(d => {
-                const token = this.state.tokens.find(t => t.symbol === d.symbol);
-        
-                return Object.assign(d, { 
-                    name: token.name, 
-                    lastPrice: token.lastPrice, 
-                    priceChangePercent: token.priceChangePercent,
-                    usdValue: usdFormat(d.balance * token.lastPrice, 2)
-                });
-            });
-        
-            //this.state.user.balances.sort((a, b) => b.balance * b.lastPrice * window.steem_price - a.balance * a.lastPrice * window.steem_price);
-        
-            let totalInUsd = 0.00;
-            this.state.user.balances.forEach(function(o) {
-                var amount = parseFloat(o.usdValue.replace('$', '').replace(',', ''));
-                totalInUsd += amount;
+            const balances = [ ...this.state.user.balances ];
+
+            balances.map(balance => {
+                const token = state.tokens.find(t => t.symbol === balance.symbol);
+
+                if (token && token.metadata && token.metadata.icon) {
+                    balance.icon = token.metadata.icon;
+                }
+
+                balance.balance = `${addCommas(balance.balance)} ${balance.symbol}`;
+
+                return balance;
             });
 
-            console.log(this.state.user.balances);
+            this.rowData = this.state.user.balances;
+        
+            //this.state.user.balances.sort((a, b) => b.balance * b.lastPrice * window.steem_price - a.balance * a.lastPrice * window.steem_price);
         });
     }
 
@@ -70,7 +73,6 @@ export class Balances {
             this.username = user;
         }
 
-        await dispatchify(loadTokens)();
         await dispatchify(loadBalances)(this.username);
     }
 }
