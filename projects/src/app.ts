@@ -18,6 +18,7 @@ import { Router, RouterConfiguration } from 'aurelia-router';
 import environment from 'environment';
 
 import 'store/store';
+import { loadTokens } from 'store/actions';
 
 @autoinject()
 export class App {
@@ -89,6 +90,6 @@ export class App {
     }
 
     attached() {
-        this.store.dispatch(rehydrateFromLocalStorage, 'steem-engine__state');
+
     }
 }

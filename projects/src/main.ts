@@ -1,3 +1,4 @@
+import { loadTokens } from 'store/actions';
 import '@babel/polyfill';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
@@ -10,9 +11,10 @@ import Backend from 'i18next-xhr-backend';
 
 import { initialState } from './store/state';
 import { ValidationMessageProvider } from 'aurelia-validation';
+import { rehydrateFromLocalStorage, dispatchify } from 'aurelia-store';
 
 
-export function configure(aurelia: Aurelia) {
+export async function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
         .feature(PLATFORM.moduleName('resources/index'));
@@ -69,5 +71,8 @@ export function configure(aurelia: Aurelia) {
         return i18n.tr(propertyName);
       };
 
-    aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('app')));
+    await aurelia.start();
+    await dispatchify(rehydrateFromLocalStorage)('steem-engine__state');
+    await dispatchify(loadTokens)();
+    aurelia.setRoot(PLATFORM.moduleName('app'));
 }
