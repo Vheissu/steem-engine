@@ -21,6 +21,7 @@ export class InvestorQuestionnaire {
     private renderer;
     private progressStep: HTMLProgressElement;
     private subscription: Subscription;
+    private subscribeOnce: Subscription;
 
     private steps = {
         step1: new Step1Model(),
@@ -39,13 +40,23 @@ export class InvestorQuestionnaire {
         this.store.registerAction('nextStep', this.nextStep);
         this.store.registerAction('previousStep', this.previousStep);
         this.store.registerAction('setTotalSteps', this.setTotalSteps);
+        this.store.registerAction('commitStep', this.commitStep);
 
         this.renderer = new BootstrapFormRenderer();
+
+        this.initValidation();
         
         this.step1Controller.addRenderer(this.renderer);
         this.step2Controller.addRenderer(this.renderer);
         this.step3Controller.addRenderer(this.renderer);
         this.step4Controller.addRenderer(this.renderer);
+    }
+
+    initValidation() {
+        this.clearController(this.step1Controller);
+        this.clearController(this.step2Controller);
+        this.clearController(this.step3Controller);
+        this.clearController(this.step4Controller);
 
         this.step1Controller.addObject(this.steps.step1, Step1Rules);
         this.step2Controller.addObject(this.steps.step2, Step2Rules);
@@ -56,6 +67,13 @@ export class InvestorQuestionnaire {
     bind() {
         this.subscription = this.store.state.subscribe((state: State) => {
             this.state = state;
+
+            this.steps.step1 = { ...state.investorQuestionnaire.step1 } as Step1Model;
+            this.steps.step2 = { ...state.investorQuestionnaire.step2 } as Step2Model;
+            this.steps.step3 = { ...state.investorQuestionnaire.step3 } as Step3Model;
+            this.steps.step4 = { ...state.investorQuestionnaire.step4 } as Step4Model;
+
+            this.initValidation();
            
             const currentStep = state.investorQuestionnaire.currentStep;
 
@@ -90,33 +108,53 @@ export class InvestorQuestionnaire {
 
         const currentStep = this.state.investorQuestionnaire.currentStep;
 
+        console.log(currentStep);
+
         if (currentStep === 1) {
             const result = await this.step1Controller.validate();
+
+            console.log(result);
             
             if (!result.valid) {
                 return;
             }
+
+            this.store.dispatch('commitStep', 1, this.steps.step1);
         } else if (currentStep === 2) {
             const result = await this.step2Controller.validate();
 
             if (!result.valid) {
                 return;
             }
+
+            this.store.dispatch('commitStep', 2, this.steps.step2);
         } else if (currentStep === 3) {
             const result = await this.step3Controller.validate();
 
             if (!result.valid) {
                 return;
             }
+
+            this.store.dispatch('commitStep', 3, this.steps.step3);
         } else if (currentStep === 4) {
             const result = await this.step4Controller.validate();
 
             if (!result.valid) {
                 return;
             }
+
+            this.store.dispatch('commitStep', 4, this.steps.step4);
         }
 
         this.store.dispatch('nextStep');
+    }
+
+    commitStep(state: State, step, body) {
+        const newState = { ...state };
+
+        newState.investorQuestionnaire[`step${step}`] = { ...body };
+
+        return newState;
     }
 
     goToPreviousStep() {
@@ -155,6 +193,14 @@ export class InvestorQuestionnaire {
         }
 
         return newState;
+    }
+
+    clearController(controller: ValidationController) {
+        const validationEntries = Array.from((controller as any).objects);
+
+        validationEntries.forEach(([key]) => {
+            controller.removeObject(key);
+        });
     }
 
     @computedFrom('state.investorQuestionnaire.currentStep')
