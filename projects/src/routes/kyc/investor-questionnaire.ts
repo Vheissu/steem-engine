@@ -1,3 +1,6 @@
+import { Step4Model } from './step-4/step-4.model';
+import { Step3Model } from './step-3/step-3.model';
+import { Step2Model } from './step-2/step-2.model';
 import { BootstrapFormRenderer } from './../../resources/bootstrap-form-renderer';
 import { Store } from 'aurelia-store';
 import { autoinject, newInstance, computedFrom } from 'aurelia-framework';
@@ -5,10 +8,12 @@ import { ValidationController } from 'aurelia-validation';
 import { Subscription } from 'rxjs';
 import { State } from 'store/state';
 
-import { Step1Rules } from './step-1.rules';
-import { Step2Rules } from './step-2.rules';
-import { Step3Rules } from './step-3.rules';
-import { Step4Rules } from './step-4.rules';
+import { Step1Rules } from './step-1/step-1.rules';
+import { Step1Model } from './step-1/step-1.model';
+import { Step2Rules } from './step-2/step-2.rules';
+import { Step3Rules } from './step-3/step-3.rules';
+import { Step4Rules } from './step-4/step-4.rules';
+
 
 @autoinject()
 export class InvestorQuestionnaire {
@@ -18,40 +23,10 @@ export class InvestorQuestionnaire {
     private subscription: Subscription;
 
     private steps = {
-        step1: {
-            firstName: '',
-            lastName: ''
-        },
-        step2: {
-            contactMethod: '',
-            contactMethodAlternative: ''
-        },
-        step3: {
-            notAnEntity: '',
-            entityName: '',
-            entityState: '',
-            entityBoxOptions: [],
-            investmentObjectives: {
-                first: '',
-                second: '',
-                third: '',
-                fourth: ''
-            },
-            riskTolerance: {
-                first: '',
-                second: '',
-                third: ''
-            },
-            allowSpeculation: '',
-            education: '',
-            licenses: '',
-            jobExperience: '',
-            primarySourceIncome: '',
-            primaryInvestorExperience: []
-        },
-        step4: {
-
-        }
+        step1: new Step1Model(),
+        step2: new Step2Model(),
+        step3: new Step3Model(),
+        step4: new Step4Model()
     };
 
     constructor(
@@ -98,6 +73,10 @@ export class InvestorQuestionnaire {
 
     attached() {
         this.store.dispatch('setTotalSteps', (Object.keys(this.steps).length));
+
+        if (this.state.investorQuestionnaire.currentStep !== 1) {
+            this.store.dispatch('updateStep');
+        }
     }
 
     detached() {
@@ -125,8 +104,6 @@ export class InvestorQuestionnaire {
             }
         } else if (currentStep === 3) {
             const result = await this.step3Controller.validate();
-
-            console.log(result);
 
             if (!result.valid) {
                 return;
