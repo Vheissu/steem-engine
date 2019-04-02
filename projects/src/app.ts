@@ -1,4 +1,5 @@
 import { dispatchify, rehydrateFromLocalStorage } from 'aurelia-store';
+import { PostRenderStep } from './resources/pipeline-steps/postrender';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'font-awesome/css/font-awesome.min.css';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -17,6 +18,7 @@ export class App {
     public configureRouter(config: RouterConfiguration, router: Router) {
         config.title = environment.siteName;
 
+        config.addPipelineStep('postRender', PostRenderStep);
         config.map([
             {
                 route: ['', 'home'],
