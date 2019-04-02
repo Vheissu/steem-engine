@@ -1,3 +1,4 @@
+import { Step1Model } from './step-1.model';
 import { ValidationRules } from 'aurelia-validation';
 
 export const Step1Rules = ValidationRules
@@ -9,6 +10,7 @@ export const Step1Rules = ValidationRules
     .ensure('employedSince').required().withMessageKey('employedSince')
     .ensure('dateOfBirth').required().withMessageKey('dateOfBirth')
     .ensure('stateRegisteredToVote').required().withMessageKey('stateRegisteredToVote')
+        .when((o: Step1Model) => o.country === 'US')
     .ensure('cellPhone').required().withMessageKey('cellPhone')
     .ensure('businessProfession').required().withMessageKey('businessProfession')
     .ensure('companyName').required().withMessageKey('companyName')
