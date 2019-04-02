@@ -2,6 +2,7 @@
     "docUploadFailed": "Failed to upload specific document(s)",
     "firstName": "Please enter a first name",
     "lastName": "Please enter a last name",
+    "emailAddress": "Please enter a valid email address",
     "dateOfBirth": "Please provide a date of birth",
     "homeAddress": "Please enter a home address",
     "stateRegisteredToVote": "Please enter your registered voting state",
