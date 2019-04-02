@@ -1,26 +1,26 @@
 export class Step3Model {
-    private notAnEntity: '';
-    private entityName: '';
-    private entityState: '';
-    private entityBoxOptions: [];
+    private notAnEntity = '';
+    private entityName = '';
+    private entityState = '';
+    private entityBoxOptions = [];
 
-    private investmentObjectives: {
+    private investmentObjectives = {
         first: '',
         second: '',
         third: '',
         fourth: ''
     };
 
-    private riskTolerance: {
+    private riskTolerance = {
         first: '',
         second: '',
         third: ''
     };
 
-    private allowSpeculation: '';
-    private education: '';
-    private licenses: '';
-    private jobExperience: '';
-    private primarySourceIncome: '';
-    private primaryInvestorExperience: [];
+    private allowSpeculation = '';
+    private education = '';
+    private licenses = '';
+    private jobExperience = '';
+    private primarySourceIncome = '';
+    private primaryInvestorExperience = [];
 }
