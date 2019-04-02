@@ -1,5 +1,6 @@
+import { PLATFORM } from 'aurelia-pal';
 import { Container } from 'aurelia-framework';
-import { localStorageMiddleware, Store, MiddlewarePlacement, rehydrateFromLocalStorage, CallingAction } from 'aurelia-store';
+import { localStorageMiddleware, Store, MiddlewarePlacement, rehydrateFromLocalStorage } from 'aurelia-store';
 import { State } from './state';
 
 import { BalancesMiddleware } from './middleware/balances';
