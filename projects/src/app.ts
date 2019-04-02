@@ -1,3 +1,4 @@
+import { MaintenanceStep } from './resources/pipeline-steps/maintenance';
 import { State } from 'store/state';
 import { Store, connectTo, } from 'aurelia-store';
 
@@ -31,6 +32,7 @@ export class App {
     public configureRouter(config: RouterConfiguration, router: Router) {
         config.title = environment.siteName;
 
+        config.addPipelineStep('authorize', MaintenanceStep);
         config.addPipelineStep('preRender', PreRenderStep);
         config.addPipelineStep('postRender', PostRenderStep);
 
@@ -41,6 +43,13 @@ export class App {
                 moduleId: PLATFORM.moduleName('./routes/home'),
                 nav: true,
                 title: 'Home'
+            },
+            {
+                route: 'maintenance',
+                name: 'maintenance',
+                moduleId: PLATFORM.moduleName('./routes/maintenance'),
+                nav: false,
+                title: 'Maintenance'
             },
             {
                 route: 'projects/:project?',
