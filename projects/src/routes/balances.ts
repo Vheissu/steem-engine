@@ -25,6 +25,7 @@ export class Balances {
     constructor(private store: Store<State>, private SE: SteemEngine, private dialogService: DialogService) {
         this.gridOptions = <GridOptions>{};
 
+        this.gridOptions.headerHeight = 50;
         this.gridOptions.rowHeight = 40;
         this.gridOptions.domLayout = 'autoHeight';
 
