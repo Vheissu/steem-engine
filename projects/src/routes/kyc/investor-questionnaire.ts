@@ -3,7 +3,7 @@ import { Step3Model } from './step-3/step-3.model';
 import { Step2Model } from './step-2/step-2.model';
 import { BootstrapFormRenderer } from './../../resources/bootstrap-form-renderer';
 import { Store } from 'aurelia-store';
-import { autoinject, newInstance, computedFrom } from 'aurelia-framework';
+import { autoinject, newInstance, computedFrom, BindingEngine, Disposable } from 'aurelia-framework';
 import { ValidationController } from 'aurelia-validation';
 import { Subscription } from 'rxjs';
 import { State } from 'store/state';
@@ -13,6 +13,7 @@ import { Step1Model } from './step-1/step-1.model';
 import { Step2Rules } from './step-2/step-2.rules';
 import { Step3Rules } from './step-3/step-3.rules';
 import { Step4Rules } from './step-4/step-4.rules';
+import { I18N } from 'aurelia-i18n';
 
 
 @autoinject()
@@ -22,6 +23,7 @@ export class InvestorQuestionnaire {
     private progressStep: HTMLProgressElement;
     private subscription: Subscription;
     private subscribeOnce: Subscription;
+    private countryObserver: Disposable;
 
     private steps = {
         step1: new Step1Model(),
@@ -32,6 +34,8 @@ export class InvestorQuestionnaire {
 
     constructor(
         private store: Store<State>,
+        private i18n: I18N,
+        private bindingEngine: BindingEngine,
         @newInstance() private step1Controller: ValidationController,
         @newInstance() private step2Controller: ValidationController,
         @newInstance() private step3Controller: ValidationController,
@@ -68,10 +72,10 @@ export class InvestorQuestionnaire {
         this.subscription = this.store.state.subscribe((state: State) => {
             this.state = state;
 
-            this.steps.step1 = { ...state.investorQuestionnaire.step1 } as Step1Model;
-            this.steps.step2 = { ...state.investorQuestionnaire.step2 } as Step2Model;
-            this.steps.step3 = { ...state.investorQuestionnaire.step3 } as Step3Model;
-            this.steps.step4 = { ...state.investorQuestionnaire.step4 } as Step4Model;
+            this.steps.step1 = { ...this.steps.step1, ...state.investorQuestionnaire.step1 } as Step1Model;
+            this.steps.step2 = { ...this.steps.step2, ...state.investorQuestionnaire.step2 } as Step2Model;
+            this.steps.step3 = { ...this.steps.step3, ...state.investorQuestionnaire.step3 } as Step3Model;
+            this.steps.step4 = { ...this.steps.step4, ...state.investorQuestionnaire.step4 } as Step4Model;
 
             this.initValidation();
            
@@ -86,6 +90,8 @@ export class InvestorQuestionnaire {
             } else if (currentStep === 4) {
                 this.progressStep.value = 100;
             }
+
+            this.watchForCountryChange();
         });
     }
 
@@ -105,6 +111,21 @@ export class InvestorQuestionnaire {
         this.step1Controller.removeRenderer(this.renderer);
         this.step2Controller.removeRenderer(this.renderer);
         this.step3Controller.removeRenderer(this.renderer);
+    }
+    watchForCountryChange() {
+        if (this.countryObserver && this.countryObserver.dispose) {
+            this.countryObserver.dispose();
+        }
+    
+        this.countryObserver = this.bindingEngine
+            .propertyObserver(this.steps.step1, 'country')
+            .subscribe((newValue) => {
+                if (newValue === 'AU' || newValue === 'GB') {
+                    this.i18n.setLocale('en-AU');
+                } else {
+                    this.i18n.setLocale('en');
+                }
+            });
     }
 
     async formSubmit(event: Event) {
