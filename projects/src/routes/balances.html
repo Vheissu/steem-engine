@@ -4,8 +4,7 @@
         <span id="total-wallet-value">Est. total value: $<span id="wallet-value-amount">454417.77</span> USD</span>
       </header>
 
-    <div style="width: 100%; height: 350px;">
-        <ag-grid-aurelia #agGrid style="width: 100%; height: 100%;" class="ag-theme-balham" column-defs.bind="columnDefs" row-data.bind="rowData" grid-options.bind="gridOptions">
-        </ag-grid-aurelia>
+      <div class="container">
+        <ag-grid-aurelia #agGrid style="width: 100%;" class="ag-theme-balham" column-defs.bind="columnDefs" row-data.bind="rowData" grid-options.bind="gridOptions"></ag-grid-aurelia>
       </div>
 </template>
