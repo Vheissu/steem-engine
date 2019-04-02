@@ -1,4 +1,4 @@
-import { loadTokens } from 'store/actions';
+import { loadTokens, login } from 'store/actions';
 import '@babel/polyfill';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
@@ -87,5 +87,14 @@ export async function configure(aurelia: Aurelia) {
 
     await store.dispatch('Rehydrate', 'steem-engine__state');
     await store.dispatch(loadTokens);
+
+    if (PLATFORM.global.localStorage) {
+        if (PLATFORM.global.localStorage.getItem('username')) {
+            const username = PLATFORM.global.localStorage.getItem('username');
+
+            await store.dispatch(login, username);
+        }
+    }
+    
     await aurelia.setRoot(PLATFORM.moduleName('app'));
 }

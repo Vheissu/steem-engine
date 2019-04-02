@@ -18,5 +18,6 @@
     "entityState": "Please enter the name of the state, where the entity, plan or trust was formed",
     "errorLogin": "Unable to log in with the @{username} account.",
     "errorLoading": "There was an error loading the @{username} account.",
-    "invalidPrivateKeyOrPassword": "Invalid private key or master password."
+    "invalidPrivateKeyOrPassword": "Invalid private key or master password.",
+    "errorSubmittedTransfer": "An error occurred submitting the transfer: {error}"
 }

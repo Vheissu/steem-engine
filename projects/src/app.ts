@@ -1,5 +1,5 @@
 import { State } from 'store/state';
-import { Store, } from 'aurelia-store';
+import { Store, connectTo, } from 'aurelia-store';
 
 import { PreRenderStep } from './resources/pipeline-steps/prerender';
 import { PostRenderStep } from './resources/pipeline-steps/postrender';
@@ -19,6 +19,7 @@ import environment from 'environment';
 import 'store/store';
 
 @autoinject()
+@connectTo()
 export class App {
     public router: Router;
     private year = new Date().getFullYear();
@@ -54,6 +55,13 @@ export class App {
                 moduleId: PLATFORM.moduleName('./routes/balances'),
                 nav: false,
                 title: 'Balances'
+            },
+            {
+                route: 'sign-in',
+                name: 'signin',
+                moduleId: PLATFORM.moduleName('./routes/sign-in'),
+                nav: false,
+                title: 'Signin'
             },
             {
                 route: 'kyc',

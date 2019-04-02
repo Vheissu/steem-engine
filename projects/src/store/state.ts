@@ -4,12 +4,11 @@ import { Step2Model } from './../routes/kyc/step-2/step-2.model';
 import { Step1Model } from './../routes/kyc/step-1/step-1.model';
 
 export interface State {
-  loggedIn: boolean;
-  
   user: {
       name: string;
       balances: any[];
       totalUsdValue: number;
+      loggedIn: boolean;
   };
 
   token: any;
@@ -26,11 +25,11 @@ export interface State {
 }
 
 export const initialState: State = {
-  loggedIn: false,
   user: {
       name: '',
       balances: [],
-      totalUsdValue: 0.00
+      totalUsdValue: 0.00,
+      loggedIn: false
   },
   token: 0,
   tokens: [],

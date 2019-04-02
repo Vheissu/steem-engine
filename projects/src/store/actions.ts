@@ -8,7 +8,8 @@ const SE = Container.instance.get(SteemEngine);
 export async function login(state: State, user: any): Promise<State> {
     let newState = { ...state };
 
-    newState.loggedIn = true;
+    newState.user.name = user;
+    newState.user.loggedIn = true;
 
     return newState;
 }
@@ -16,12 +17,11 @@ export async function login(state: State, user: any): Promise<State> {
 export async function logout(state: State): Promise<State> {
     const newState = { ...state };
 
-    newState.loggedIn = false;
-
     newState.user = {
-        name: null,
+        name: '',
         balances: [],
-        totalUsdValue: 0.00
+        totalUsdValue: 0.00,
+        loggedIn: false
     };
 
     return newState;

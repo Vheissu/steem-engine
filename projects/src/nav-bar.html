@@ -1,4 +1,4 @@
-<template bindable="router">
+<template>
         <nav class="navbar navbar-dark navbar-expand-lg navbar-steem-engine fixed-top">
             <a class="navbar-brand" href="#" onclick="SE.ShowHome()"><img src="../../images/steem-engine_logo-horizontal.svg"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,13 +8,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav w-100 justify-content-end align-items-center">
                     <a class="nav-item nav-link ${row.isActive ? 'active' : ''}" repeat.for="row of router.navigation" href.bind="row.href">${row.title}</a>
+                    
+                    <button id="btnSignIn" class="btn" if.bind="!user.loggedIn" click.delegate="login()" style="margin-left: 50px;">SIGN IN</button>
             
-                    <button id="btnSignIn" class="btn" onclick="SE.ShowSignIn();" style="margin-left: 50px; display: none;">SIGN IN</button>
-            
-                    <div id="ddlLoggedIn" class="nav-item dropdown" style="margin-left: 40px;">
+                    <div id="ddlLoggedIn" class="nav-item dropdown" style="margin-left: 40px;" if.bind="user.loggedIn">
                         <a class="nav-link dropdown-toggle p-0" href="#" id="lnkUsername" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@beggars</a>
                         <div class="dropdown-menu" aria-labelledby="lnkUsername">
-                        <a class="dropdown-item" onclick="SE.LogOut();">Log Out</a>
+                        <a class="dropdown-item" click.delegate="logout()">Log Out</a>
                         </div>
                     </div>
                 </div>
