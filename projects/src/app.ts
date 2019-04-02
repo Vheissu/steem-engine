@@ -21,6 +21,7 @@ import 'store/store';
 @autoinject()
 export class App {
     public router: Router;
+    private year = new Date().getFullYear();
 
     constructor(private store: Store<State>) {
 
