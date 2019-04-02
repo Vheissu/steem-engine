@@ -1,0 +1,18 @@
+<template>
+    <header>
+        <div class="row header-row header-pull header-block">
+            <div class="col-md-6">
+                <h1>${'MARKET' & t}</h1>
+            </div>
+            <div class="col-md-6">
+                <div class="buttons">
+                    <button class="btn btn-primary" click.delegate="deposit()">${'DEPOSIT' & t}</button>
+                    <button class="btn btn-secondary" click.delegate="withdraw()">${'WITHDRAW' & t}</button>
+                    <div class="note">NOTE: There is a 1% fee on all deposits and withdrawals.</div>
+                </div>
+            </div>
+        </div>
+    
+        <p>Trade any Steem Engine token against STEEM on the internal DEX!</p>	
+    </header>
+</template>

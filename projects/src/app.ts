@@ -52,6 +52,15 @@ export class App {
                 title: 'Maintenance'
             },
             {
+            {
+                route: 'market/:token?',
+                name: 'market',
+                moduleId: PLATFORM.moduleName('./routes/market'),
+                nav: true,
+                href: '/market/ENG',
+                title: 'Market'
+            },
+            {
                 route: 'projects/:project?',
                 name: 'projects',
                 moduleId: PLATFORM.moduleName('./routes/projects/projects'),
