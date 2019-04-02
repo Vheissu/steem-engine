@@ -5,6 +5,7 @@ import 'flatpickr/dist/flatpickr.css';
 import { customAttribute, inject, TaskQueue, dynamicOptions } from 'aurelia-framework';
 
 const BaseConfiguration: Flatpickr.Options.Options = {
+    allowInput: true,
     altFormat: 'm/d/Y',
     dateFormat: 'Y-m-d h:i K',
     altInput: true

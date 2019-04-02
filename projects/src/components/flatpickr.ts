@@ -7,15 +7,15 @@ import Flatpickr from 'flatpickr';
 import {
   customElement,
   bindable,
-  containerless,
   bindingMode,
   TaskQueue
 } from 'aurelia-framework';
 
 const BaseConfiguration: Flatpickr.Options.Options = {
-  altFormat: 'm/d/Y',
-  dateFormat: 'Y-m-d h:i K',
-  altInput: true
+    allowInput: true,
+    altFormat: 'm/d/Y',
+    dateFormat: 'Y-m-d h:i K',
+    altInput: true
 };
 
 @inject(TaskQueue)
