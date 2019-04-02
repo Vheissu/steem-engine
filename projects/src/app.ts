@@ -1,11 +1,10 @@
 import { State } from 'store/state';
-import { dispatchify, Store, rehydrateFromLocalStorage } from 'aurelia-store';
+import { Store, } from 'aurelia-store';
 
 import { PreRenderStep } from './resources/pipeline-steps/prerender';
 import { PostRenderStep } from './resources/pipeline-steps/postrender';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import '../../styles/main.css';
@@ -18,7 +17,6 @@ import { Router, RouterConfiguration } from 'aurelia-router';
 import environment from 'environment';
 
 import 'store/store';
-import { loadTokens } from 'store/actions';
 
 @autoinject()
 export class App {
@@ -87,9 +85,5 @@ export class App {
         ]);
 
         this.router = router;
-    }
-
-    attached() {
-
     }
 }
