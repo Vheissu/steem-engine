@@ -32,8 +32,8 @@ export function addCommas(nStr, currency?) {
 	return x1 + x2;
 }
 
-export function usdFormat(val, steemPrice, decimal_limit?) {
-    const usd = val * steemPrice;
+export function usdFormat(val, decimal_limit?) {
+    const usd = val * window.steem_price;
 
     if (decimal_limit != null && !isNaN(parseInt(decimal_limit))) {
         return '$' + addCommas(usd.toFixed(decimal_limit));

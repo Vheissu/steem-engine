@@ -1,11 +1,11 @@
 import { usdFormat } from 'common/functions';
 
 export class UsdFormatValueConverter {
-    toView(value, steemPrice, decimalLimit) {
+    toView(value, decimalLimit) {
         if (!value) {
             return value;
         }
 
-        return usdFormat(value, steemPrice, decimalLimit);
+        return usdFormat(value, decimalLimit);
     }
 }
