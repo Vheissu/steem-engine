@@ -126,3 +126,58 @@ progress::-webkit-progress-value {
     margin-top: -15px;
     text-align: left;
 }
+
+.ag-theme-balham {
+    color: #27475E;
+}
+
+.ag-theme-balham .ag-header {
+    background: transparent;
+}
+
+.ag-theme-balham .ag-root,
+.ag-theme-balham .ag-header,
+.ag-theme-balham .ag-header-cell, 
+.ag-theme-balham .ag-header-group-cell,
+.ag-theme-balham .ag-header-cell:after, 
+.ag-theme-balham .ag-header-group-cell:after,
+.ag-theme-balham .ag-row {
+    border: none;
+}
+
+.ag-cell {
+    font-size: 0.9rem;
+}
+
+.ag-cell[col-id="actions"] {
+    font-size: 1.32rem;
+    text-align: right;
+}
+
+.ag-cell a {
+    color: inherit;
+}
+
+.ag-theme-balham .ag-row-odd {
+    background-color: #E9EEF2;
+}
+
+.fas:hover {
+    color: #8E4A2C;
+}
+
+.cell-button-actions {
+    display: flex;
+}
+
+.cell-button-actions a {
+    margin-right: 15px;
+}
+
+.cell-button-actions .fas {
+    pointer-events: none;
+}
+
+.cell-button-actions a:last-child {
+    margin-right: 0;
+}
