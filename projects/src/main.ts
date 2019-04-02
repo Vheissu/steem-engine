@@ -11,8 +11,9 @@ import Backend from 'i18next-xhr-backend';
 
 import { initialState } from './store/state';
 import { ValidationMessageProvider } from 'aurelia-validation';
-import { rehydrateFromLocalStorage, dispatchify } from 'aurelia-store';
+import store from 'store/store';
 
+import modalCss from './styles/modal.css';
 
 export async function configure(aurelia: Aurelia) {
     aurelia.use
@@ -74,10 +75,17 @@ export async function configure(aurelia: Aurelia) {
 
         const i18n = aurelia.container.get(I18N);
         return i18n.tr(propertyName);
-      };
+    };
 
     await aurelia.start();
-    await dispatchify(rehydrateFromLocalStorage)('steem-engine__state');
-    await dispatchify(loadTokens)();
-    aurelia.setRoot(PLATFORM.moduleName('app'));
+
+    if (PLATFORM.global.localStorage) {
+        if (!PLATFORM.global.localStorage.getItem('steem-engine__state')) {
+            PLATFORM.global.localStorage.setItem('steem-engine__state', JSON.stringify(initialState));
+        }
+    }
+
+    await store.dispatch('Rehydrate', 'steem-engine__state');
+    await store.dispatch(loadTokens);
+    await aurelia.setRoot(PLATFORM.moduleName('app'));
 }
