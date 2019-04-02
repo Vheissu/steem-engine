@@ -11,6 +11,7 @@
     "middleInitial": "Middle initial",
     "lastName": "Last name",
     "dateOfBirth": "Date of Birth",
+    "Country": "Country",
     "homeAddress": "Home address",
     "stateRegisteredToVote": "State in which you are registered to vote",
     "homeTelephone": "Home Telephone",
