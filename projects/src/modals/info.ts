@@ -13,7 +13,5 @@ export class InfoModal {
 
     async activate(token) {
         this.token = token;
-
-        console.log(token);
     }
 }
