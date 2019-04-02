@@ -11,6 +11,7 @@ import Backend from 'i18next-xhr-backend';
 import { initialState } from './store/state';
 import { ValidationMessageProvider } from 'aurelia-validation';
 
+
 export function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()

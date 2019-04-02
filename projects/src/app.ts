@@ -17,12 +17,14 @@ import { Router, RouterConfiguration } from 'aurelia-router';
 
 import environment from 'environment';
 
+import 'store/store';
+
 @autoinject()
 export class App {
     public router: Router;
 
     constructor(private store: Store<State>) {
-        this.store.registerAction('Rehydrate', rehydrateFromLocalStorage);
+
     }
 
     public configureRouter(config: RouterConfiguration, router: Router) {
@@ -87,6 +89,6 @@ export class App {
     }
 
     attached() {
-        this.store.dispatch(rehydrateFromLocalStorage);
+        this.store.dispatch(rehydrateFromLocalStorage, 'steem-engine__state');
     }
 }
