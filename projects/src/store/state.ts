@@ -11,6 +11,7 @@ export interface State {
       loggedIn: boolean;
   };
 
+  steemPrice: number;
   token: any;
   tokens: any[];
 
@@ -31,6 +32,7 @@ export const initialState: State = {
       totalUsdValue: 0.00,
       loggedIn: false
   },
+  steemPrice: 0,
   token: 0,
   tokens: [],
   investorQuestionnaire: {
