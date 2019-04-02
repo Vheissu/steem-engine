@@ -15,18 +15,37 @@ import { PLATFORM } from 'aurelia-pal';
 import { autoinject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 
+import { pluck } from 'rxjs/operators';
+
 import environment from 'environment';
 
 import 'store/store';
+import { loadSteemPrice } from 'store/actions';
+import { Subscription } from 'rxjs';
 
 @autoinject()
 @connectTo()
 export class App {
     public router: Router;
     private year = new Date().getFullYear();
+    private stateSubscription: Subscription;
 
     constructor(private store: Store<State>) {
 
+    }
+
+    bind() {
+        this.stateSubscription = this.store.state.pipe(pluck('steemPrice')).subscribe(price => {
+            if (price) {
+                window.steem_price = price;
+            }
+        });
+    }
+
+    unbind() {
+        if (this.stateSubscription) {
+            this.stateSubscription.unsubscribe();
+        }
     }
 
     public configureRouter(config: RouterConfiguration, router: Router) {
@@ -119,5 +138,9 @@ export class App {
         ]);
 
         this.router = router;
+    }
+
+    attached() {
+        this.store.dispatch(loadSteemPrice);
     }
 }
