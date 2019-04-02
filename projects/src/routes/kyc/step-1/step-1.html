@@ -61,9 +61,14 @@
                     <div class="form-group">
                         <label>${'dateOfBirth' & t} <span class="asterisk text-danger">*</span></label>
                         <input type="text" class="form-control" value.bind="step.dateOfBirth & validate:controller" flatpickr>
-                    </div> 
-            
+                    </div>
+                    
                     <div class="form-group">
+                        <label>${'Country' & t}</label>
+                        <countries value.bind="step.country"></countries>
+                    </div>
+            
+                    <div class="form-group" if.bind="step.country == 'US'">
                         <label>${'stateRegisteredToVote' & t} <span class="asterisk text-danger">*</span></label>
                         <input type="text" class="form-control" placeholder="Texas" value.bind="step.stateRegisteredToVote & validate:controller">
                     </div>
