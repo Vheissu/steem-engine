@@ -3,7 +3,7 @@ import { Container } from 'aurelia-framework';
 import { State } from './state';
 import store from './store';
 
-const SE = Container.instance.get(SteemEngine);
+const SE: SteemEngine = Container.instance.get(SteemEngine);
 
 export async function login(state: State, user: any): Promise<State> {
     let newState = { ...state };
@@ -27,6 +27,20 @@ export async function logout(state: State): Promise<State> {
     return newState;
 }
 
+export async function loadSteemPrice(state: State): Promise<State> {
+    const newState = { ...state };
+
+    try {
+        const price = await SE.loadSteemPrice();
+
+        newState.steemPrice = price;
+    } catch (e) {
+        return newState;
+    }
+
+    return newState;
+}
+
 export async function loadBalances(state: State, username: string): Promise<State> {
     let newState = { ...state };
 
@@ -45,7 +59,7 @@ export async function loadTokens(state: State): Promise<State> {
     let newState = { ...state };
 
     try {
-        const tokens = await SE.loadTokens();
+        const tokens = await SE.loadTokens() as any[];
 
         newState.tokens = tokens;
     } catch (e) {
@@ -70,6 +84,7 @@ export async function getToken(state: State, token: string) {
 
 store.registerAction('login', login);
 store.registerAction('logout', logout);
+store.registerAction('loadSteemPrice', loadSteemPrice);
 store.registerAction('loadBalances', loadBalances);
 store.registerAction('loadTokens', loadTokens);
 store.registerAction('getToken', getToken);
