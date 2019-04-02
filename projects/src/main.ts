@@ -18,6 +18,7 @@ import modalCss from './styles/modal.css';
 export async function configure(aurelia: Aurelia) {
     aurelia.use
         .standardConfiguration()
+        .feature(PLATFORM.moduleName('components/index'))
         .feature(PLATFORM.moduleName('resources/index'));
 
     aurelia.use.developmentLogging(environment.debug ? 'debug' : 'warn');
