@@ -128,7 +128,13 @@ progress::-webkit-progress-value {
 }
 
 .ag-theme-balham {
+    background: transparent;
     color: #27475E;
+    position: relative;
+}
+
+.tokens-table {
+    top: -65px;
 }
 
 .ag-theme-balham .ag-header {
@@ -168,6 +174,7 @@ progress::-webkit-progress-value {
 
 .cell-button-actions {
     display: flex;
+    justify-content: flex-end;
 }
 
 .cell-button-actions a {
@@ -180,4 +187,14 @@ progress::-webkit-progress-value {
 
 .cell-button-actions a:last-child {
     margin-right: 0;
+}
+
+.tokens-table .ag-header-cell-label .ag-header-cell-text {
+    color: #FFF;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+footer {
+    margin-top: 40px;
 }
