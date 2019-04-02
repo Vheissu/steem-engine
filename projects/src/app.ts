@@ -28,7 +28,9 @@ export class App {
     public configureRouter(config: RouterConfiguration, router: Router) {
         config.title = environment.siteName;
 
+        config.addPipelineStep('preRender', PreRenderStep);
         config.addPipelineStep('postRender', PostRenderStep);
+
         config.map([
             {
                 route: ['', 'home'],
