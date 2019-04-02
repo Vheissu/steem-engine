@@ -9,6 +9,7 @@ export interface State {
   user: {
       name: string;
       balances: any[];
+      totalUsdValue: number;
   };
 
   token: any;
@@ -28,7 +29,8 @@ export const initialState: State = {
   loggedIn: false,
   user: {
       name: '',
-      balances: []
+      balances: [],
+      totalUsdValue: 0.00
   },
   token: 0,
   tokens: [],

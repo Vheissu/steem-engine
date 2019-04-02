@@ -20,7 +20,8 @@ export async function logout(state: State): Promise<State> {
 
     newState.user = {
         name: null,
-        balances: []
+        balances: [],
+        totalUsdValue: 0.00
     };
 
     return newState;
