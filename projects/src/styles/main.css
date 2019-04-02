@@ -49,6 +49,15 @@ label {
     display: block;
 }
 
+.home-1 {
+    color: #FFF;
+}
+
+.home-1 .btn-lg {
+    height: auto;
+    width: auto;
+}
+
 .form-progress {
 	position: relative;
 	display: block;
