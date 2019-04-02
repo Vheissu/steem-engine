@@ -1,17 +1,18 @@
 export class Step1Model {
-    private firstName = '';
-    private lastName = '';
-    private homeAddress = '';
-    private homeTelephone = '';
-    private emailAddress = '';
-    private title = '';
-    private employedSince = '';
-    private businessTelephone = '';
-    private middleInitial = '';
-    private dateOfBirth = '';
-    private stateRegisteredToVote = '';
-    private cellPhone = '';
-    private businessProfession = '';
-    private companyName = '';
-    private businessAddress = '';
+    public firstName = '';
+    public lastName = '';
+    public homeAddress = '';
+    public homeTelephone = '';
+    public emailAddress = '';
+    public title = '';
+    public employedSince = '';
+    public businessTelephone = '';
+    public middleInitial = '';
+    public dateOfBirth = '';
+    public country = '';
+    public stateRegisteredToVote = '';
+    public cellPhone = '';
+    public businessProfession = '';
+    public companyName = '';
+    public businessAddress = '';
 }
