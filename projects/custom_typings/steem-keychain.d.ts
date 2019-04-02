@@ -19,7 +19,9 @@ declare namespace SteemKeychain {
         error: string | null;
         message: string;
         request_id: number;
-        result: string | null;
+        result: {
+            id: string
+        } | null;
         success: boolean;
     }
     
