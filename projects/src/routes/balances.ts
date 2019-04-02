@@ -48,7 +48,7 @@ export class Balances {
             { headerName: 'Token Name', field: 'name', sortable: true },
             { headerName: 'Balance', field: 'balance', sortable: true },
             { headerName: 'USD Value', field: 'usdValue', sortable: true },
-            { headerName: '% Chg', field: 'priceChangePercent', width: 80, sortable: true },
+            { headerName: '% Chg', field: 'priceChangePercent', width: 100, sortable: true },
             { headerName: '', field: 'value', cellRenderer: ActionsCellRenderer, colId: 'actions', sortable: false }
         ];
     }
