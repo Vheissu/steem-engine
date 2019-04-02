@@ -4,8 +4,6 @@ export class SymbolCellRenderer {
     init(params) {
         this.eGui = document.createElement('div');
         this.eGui.innerHTML = `${params.data.icon ? `<img class="token-icon" src="${params.data.icon}">` : ''} ${params.data.symbol}`;
-        
-        console.log(params);
     }
 
     getGui() {
@@ -13,7 +11,7 @@ export class SymbolCellRenderer {
     }
 
     refresh(params) {
-        // this.eValue.innerHTML = '';
+        this.eGui.innerHTML = `${params.data.icon ? `<img class="token-icon" src="${params.data.icon}">` : ''} ${params.data.symbol}`;
         return true;
     }
 
