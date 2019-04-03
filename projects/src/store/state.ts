@@ -13,7 +13,7 @@ export interface State {
       totalUsdValue: number;
       loggedIn: boolean;
   };
-
+  loading: boolean;
   steemPrice: number;
   buyBook: any[];
   sellBook: any[];
@@ -41,6 +41,7 @@ export const initialState: State = {
       totalUsdValue: 0.00,
       loggedIn: false
   },
+  loading: false,
   steemPrice: 0,
   buyBook: [],
   sellBook: [],

@@ -19,5 +19,9 @@
       </div>
 			<p class="copyright">${year} Steem Engine, all rights reserved.</p>
 		</div>
-	</footer>
+    </footer>
+    
+    <div class="modal-backdrop fade show loading-backdrop" if.bind="state.loading">
+        <img src="https://s3.amazonaws.com/steemmonsters/website/loading.gif" class="loading">
+    </div>
 </template>

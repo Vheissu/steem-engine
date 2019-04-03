@@ -5,6 +5,14 @@ import store from './store';
 
 const SE: SteemEngine = Container.instance.get(SteemEngine);
 
+export function loading(state: State, boolean: boolean) {
+    const newState = { ...state };
+
+    newState.loading = Boolean(boolean);
+
+    return newState;
+}
+
 export async function login(state: State, user: any): Promise<State> {
     let newState = { ...state };
 
@@ -178,6 +186,7 @@ export async function loadUserBalances(state: State, symbol: string, account?): 
     return newState;
 }
 
+store.registerAction('loading', loading);
 store.registerAction('login', login);
 store.registerAction('logout', logout);
 store.registerAction('loadSteemPrice', loadSteemPrice);
