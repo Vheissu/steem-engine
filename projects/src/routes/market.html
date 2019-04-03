@@ -14,7 +14,7 @@
         <p>Trade any Steem Engine token against STEEM on the internal DEX!</p>	
     </header>
 
-    <div class="market container" show.bind="!loading">
+    <div class="market container">
         <div class="row">
             <div class="col-md-2">
                 <ul class="list-unstyled">
@@ -22,7 +22,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-10">
+            <div class="col-md-10" show.bind="renderMarket">
                 <div class="mt-3">
                         <div class="row">
                             <div class="col-md-12 text-center stats">
