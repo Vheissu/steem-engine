@@ -389,7 +389,74 @@ export class SteemEngine {
                 callback({ success: false, error: 'Transaction not found.' });
             }
 		});
-	}
+    }
+    
+    async buyBook(symbol, account?: string) {
+        if (symbol == environment.PEGGED_TOKEN) {
+            symbol = environment.NATIVE_TOKEN;
+        }
+
+        const token = this.getToken(symbol);
+
+        if (token.metadata && token.metadata.hide_in_market) {
+            return false;
+        }
+
+        if (!account) {
+            return this.ssc.find('market', 'buyBook', { symbol: symbol }, 200, 0, [{ index: 'price', descending: true }], false);
+        }
+
+        return this.ssc.find('market', 'buyBook', { symbol, account }, 200, 0, [{ index: 'price', descending: true }], false);
+    }
+    
+    async sellBook(symbol, account?: string) {
+        if (symbol == environment.PEGGED_TOKEN) {
+            symbol = environment.NATIVE_TOKEN;
+        }
+
+        const token = this.getToken(symbol);
+
+        if (token.metadata && token.metadata.hide_in_market) {
+            return false;
+        }
+
+        if (!account) {
+            return this.ssc.find('market', 'sellBook', { symbol }, 200, 0, [{ index: 'price', descending: false }], false);
+        }
+
+        return this.ssc.find('market', 'sellBook', { 
+            symbol, 
+            account 
+        }, 200, 0, [{ index: 'price', descending: false }], false);
+    }
+    
+    async tradesHistory(symbol) {
+        if (symbol == environment.PEGGED_TOKEN) {
+            symbol = environment.NATIVE_TOKEN;
+        }
+
+        const token = this.getToken(symbol);
+
+        if (token.metadata && token.metadata.hide_in_market) {
+            return false;
+        }
+
+        return this.ssc.find('market', 'tradesHistory', { symbol: symbol }, 30, 0, [{ index: 'timestamp', descending: false }], false);
+    }
+
+    async userBalances(symbol, account) {
+        if (symbol == environment.PEGGED_TOKEN) {
+            symbol = environment.NATIVE_TOKEN;
+        }
+
+        const token = this.getToken(symbol);
+
+        if (token.metadata && token.metadata.hide_in_market) {
+            return false;
+        }
+
+        return this.ssc.find('tokens', 'balances', { account: account, symbol : { '$in' : [symbol, 'STEEMP'] } }, 2, 0, '', false);
+    }
 
     issueToken(symbol, to, quantity) {
         const transaction_data = {
