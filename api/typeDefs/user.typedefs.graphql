@@ -5,5 +5,6 @@ type Balance {
 }
 
 type Query {
-    balances(symbol: String!, account: String!): [Balance!]!
+    balances(account: String!): [Balance!]!
+    tokenBalance(symbol: String!, account: String!): [Balance!]!
 }
