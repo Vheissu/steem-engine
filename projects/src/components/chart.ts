@@ -1,4 +1,4 @@
-import { customElement, bindable, TaskQueue, autoinject } from 'aurelia-framework';
+import { customElement, bindable, TaskQueue, autoinject, DOM } from 'aurelia-framework';
 
 import Chart from 'chart.js';
 
@@ -7,6 +7,7 @@ const DefaultChartOptions = {
         display: false
     },
     options: {
+        animation: {},
         steppedLine: true
     }
 };
@@ -22,7 +23,7 @@ export class ChartComponent {
     @bindable options: any = {};
     @bindable data: any = {};
 
-    constructor(private taskQueue: TaskQueue) {
+    constructor(private element: Element, private taskQueue: TaskQueue) {
 
     }
 
@@ -32,6 +33,13 @@ export class ChartComponent {
 
             this.options.type = this.type;
             this.options.data = this.data;
+            this.options.options.animation.onComplete = () => {
+                const event = DOM.createCustomEvent('complete', {
+                    bubbles: true
+                });
+
+                this.element.dispatchEvent(event);
+            };
 
             this.createChart();
 
