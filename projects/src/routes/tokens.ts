@@ -1,3 +1,6 @@
+import { SupplyCellRenderer } from './../common/cell-renderers/supply-renderer';
+import { PercentCellRenderer } from './../common/cell-renderers/percent-renderer';
+import { PriceChangeRenderer } from './../common/cell-renderers/price-change-renderer';
 import { USDCellRenderer } from './../common/cell-renderers/usd-renderer';
 import { InfoModal } from './../modals/info';
 import { ActionsCellRenderer } from './../common/cell-renderers/actions-renderer';
@@ -27,17 +30,22 @@ export class Tokens {
         this.gridOptions = <GridOptions>{};
 
         this.gridOptions.headerHeight = 50;
-        this.gridOptions.rowHeight = 40;
+        this.gridOptions.rowHeight = 60;
         this.gridOptions.domLayout = 'autoHeight';
 
         this.gridOptions.onGridReady = (params) => {
             this.gridApi = params.api;
             this.columnApi = this.gridOptions.columnApi;
+
             this.initGrid();
         };
 
-        this.gridOptions.onFirstDataRendered = (params) => {
-            params.api.sizeColumnsToFit();
+        // this.gridOptions.onFirstDataRendered = (params) => {
+        //     params.api.sizeColumnsToFit();
+        // }
+
+        this.gridOptions.onColumnResized = (params) => {
+            params.api.resetRowHeights();
         }
     }
 
@@ -45,14 +53,64 @@ export class Tokens {
         ActionsCellRenderer.prototype.viewModel = this;
 
         this.columnDefs = [
-            { headerName: 'Symbol', field: 'symbol', cellRenderer: SymbolCellRenderer, sortable: true },
-            { headerName: 'Token Name', field: 'name', sortable: true },
-            { headerName: 'Market Cap', field: 'marketCap', cellRenderer: USDCellRenderer, sortable: true },
-            { headerName: 'Price', field: 'lastPrice', sortable: true },
-            { headerName: '% Chg', field: 'priceChangePercent', width: 100, sortable: true },
-            { headerName: '24h Vol', field: 'volume', width: 100, sortable: true },
-            { headerName: 'Supply', field: 'supply', width: 100, sortable: true },
-            { headerName: '', field: 'value', cellRenderer: ActionsCellRenderer, colId: 'actions', sortable: false }
+            { 
+                headerName: 'Symbol', 
+                field: 'symbol', 
+                cellRenderer: SymbolCellRenderer, 
+                width: 110,
+                sortable: true 
+            },
+            { 
+                headerName: 'Token Name', 
+                field: 'name',
+                autoHeight: true,
+                cellStyle: {
+                    'white-space': 'normal'
+                },
+                width: 180,
+                sortable: true 
+            },
+            { 
+                headerName: 'Market Cap', 
+                field: 'marketCap', 
+                cellRenderer: USDCellRenderer,
+                width: 165,
+                sortable: true 
+            },
+            { 
+                headerName: 'Price', 
+                field: 'lastPrice', 
+                cellRenderer: PriceChangeRenderer, 
+                width: 100, 
+                sortable: true 
+            },
+            { 
+                headerName: '% Chg', 
+                field: 'priceChangePercent', 
+                cellRenderer: PercentCellRenderer, 
+                width: 100, 
+                sortable: true 
+            },
+            { 
+                headerName: '24h Vol', 
+                field: 'volume', 
+                width: 100, 
+                sortable: true 
+            },
+            { 
+                headerName: 'Supply', 
+                field: 'supply', 
+                cellRenderer: SupplyCellRenderer,
+                width: 100, 
+                sortable: true 
+            },
+            { 
+                headerName: '', 
+                field: 'value', 
+                cellRenderer: ActionsCellRenderer, 
+                colId: 'actions', 
+                sortable: false 
+            }
         ];
     }
 

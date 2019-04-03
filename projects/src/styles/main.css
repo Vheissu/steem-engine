@@ -149,6 +149,11 @@ progress::-webkit-progress-value {
     top: -65px;
 }
 
+.ag-theme-balham .ag-row .ag-cell {
+    display: flex;
+    align-items: center;
+  }
+
 .ag-theme-balham .ag-header {
     background: transparent;
 }
