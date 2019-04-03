@@ -57,8 +57,8 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
       chunks: "initial",
       maxInitialRequests: Infinity,
       maxAsyncRequests: Infinity,
-      minSize: 10000,
-      maxSize: 40000,
+      minSize: 30000,
+      maxSize: 50000,
       cacheGroups: {
         default: false,
         fontawesome: {
