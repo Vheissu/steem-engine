@@ -5,7 +5,7 @@ import uniq from 'lodash/uniq';
 import fill from 'lodash/fill';
 import { computedFrom } from 'aurelia-binding';
 import { usdFormat } from 'common/functions';
-import { loadSteemPrice, loadTokens } from 'store/actions';
+import { loadSteemPrice, loadTokens, loadBuyBook, loadSellBook, loadTradesHistory, loadUserBalances, loadUserSellBook, loadUserBuyBook } from 'store/actions';
 import { SteemEngine } from 'services/steem-engine';
 import { autoinject } from 'aurelia-framework';
 
@@ -300,236 +300,6 @@ const Data = {
         "amountLocked": 1
       }
     ],
-    "sell_orders": [
-      {
-        "txId": "3f8cff607fda3af17833cae65e4bb286bc3ec315",
-        "timestamp": 1554143451,
-        "account": "jarvie",
-        "symbol": "ENG",
-        "quantity": "20",
-        "price": ".939",
-        "expiration": 1556735451,
-        "$loki": 3127,
-        "total": 18.779999999999998,
-        "amountLocked": 18.779999999999998
-      },
-      {
-        "txId": "714f893e84d60b63815ae9c02db068eb77900b9a",
-        "timestamp": 1554146241,
-        "account": "theb0red1",
-        "symbol": "ENG",
-        "quantity": "7.9208",
-        "price": "0.945",
-        "expiration": 1556738241,
-        "$loki": 3139,
-        "total": 26.265155999999998,
-        "amountLocked": 7.485155999999999
-      },
-      {
-        "txId": "53ba40f136dc291acb4daa24747a1ce00412c344",
-        "timestamp": 1554127518,
-        "account": "voxmortis",
-        "symbol": "ENG",
-        "quantity": "10",
-        "price": "0.945",
-        "expiration": 1556719518,
-        "$loki": 3101,
-        "total": 35.71515599999999,
-        "amountLocked": 9.45
-      },
-      {
-        "txId": "a5dc98845b5bb196124c303cd5c62e8058d74dc0",
-        "timestamp": 1554216519,
-        "account": "cryptomancer",
-        "symbol": "ENG",
-        "quantity": "100",
-        "price": "0.94900",
-        "expiration": 1556808519,
-        "$loki": 3175,
-        "total": 130.61515599999998,
-        "amountLocked": 94.89999999999999
-      },
-      {
-        "txId": "30efb69c6dad91bb32df5f3984a903869d68ff45",
-        "timestamp": 1554208143,
-        "account": "holger80",
-        "symbol": "ENG",
-        "quantity": "1000",
-        "price": "0.95",
-        "expiration": 1556800143,
-        "$loki": 3171,
-        "total": 1080.615156,
-        "amountLocked": 950
-      },
-      {
-        "txId": "5eb64b525493a7c304619f6d490e56afa6499255",
-        "timestamp": 1553894256,
-        "account": "someguy123",
-        "symbol": "ENG",
-        "quantity": "676.68700000",
-        "price": "0.95",
-        "expiration": 1556486256,
-        "$loki": 2792,
-        "total": 1723.467806,
-        "amountLocked": 642.8526499999999
-      },
-      {
-        "txId": "6d215edc9278d5e2ad67bf498970bcb5533b4584",
-        "timestamp": 1553583960,
-        "account": "cryptomancer",
-        "symbol": "ENG",
-        "quantity": "180.00000000",
-        "price": "0.975",
-        "expiration": 1556175960,
-        "$loki": 2335,
-        "total": 1898.967806,
-        "amountLocked": 175.5
-      },
-      {
-        "txId": "edf7776918fce039702c6f612c545d56d9468925",
-        "timestamp": 1551893334,
-        "account": "jarunik",
-        "symbol": "ENG",
-        "quantity": "18.00000000",
-        "price": "1",
-        "expiration": 1554485334,
-        "$loki": 3,
-        "total": 1916.967806,
-        "amountLocked": 18
-      },
-      {
-        "txId": "9eab870ab638f6ecb6f293501d57a6ad5f60e29f",
-        "timestamp": 1553894316,
-        "account": "someguy123",
-        "symbol": "ENG",
-        "quantity": "1000",
-        "price": "1.3",
-        "expiration": 1556486316,
-        "$loki": 2793,
-        "total": 3216.967806,
-        "amountLocked": 1300
-      },
-      {
-        "txId": "99d52c091718d73f7eed18e0acc29444d1960282",
-        "timestamp": 1553065908,
-        "account": "dillagr",
-        "symbol": "ENG",
-        "quantity": "17",
-        "price": "1.50000",
-        "expiration": 1555657908,
-        "$loki": 1613,
-        "total": 3242.467806,
-        "amountLocked": 25.5
-      },
-      {
-        "txId": "b00ff58b9aecbaebd720e0751786e30c645e56e0",
-        "timestamp": 1553058447,
-        "account": "bcarolan639",
-        "symbol": "ENG",
-        "quantity": "3",
-        "price": "1.5",
-        "expiration": 1555650447,
-        "$loki": 1611,
-        "total": 3246.967806,
-        "amountLocked": 4.5
-      },
-      {
-        "txId": "3dab518ff50bff48a09efead1ecbc4be990940c6",
-        "timestamp": 1551927480,
-        "account": "acromott",
-        "symbol": "ENG",
-        "quantity": "2",
-        "price": "2",
-        "expiration": 1554519480,
-        "$loki": 121,
-        "total": 3250.967806,
-        "amountLocked": 4
-      },
-      {
-        "txId": "c3441627931e7d39c700b506f85b31f47400c0c8",
-        "timestamp": 1554143334,
-        "account": "jarvie",
-        "symbol": "ENG",
-        "quantity": ".91",
-        "price": "8",
-        "expiration": 1556735334,
-        "$loki": 3125,
-        "total": 3258.2478060000003,
-        "amountLocked": 7.28
-      }
-    ],
-    "trade_history": [
-      {
-        "type": "sell",
-        "symbol": "ENG",
-        "quantity": "1.8",
-        "price": "0.93800",
-        "timestamp": 1554191265,
-        "$loki": 3930,
-        "total": 1.6884,
-        "timestamp_string": "2019-4-02 17:47:45"
-      },
-      {
-        "type": "buy",
-        "symbol": "ENG",
-        "quantity": "1.07920000",
-        "price": "0.93800",
-        "timestamp": 1554184758,
-        "$loki": 3927,
-        "total": 1.0122896,
-        "timestamp_string": "2019-4-02 15:59:18"
-      },
-      {
-        "type": "buy",
-        "symbol": "ENG",
-        "quantity": "5",
-        "price": "0.937",
-        "timestamp": 1554160365,
-        "$loki": 3903,
-        "total": 4.6850000000000005,
-        "timestamp_string": "2019-4-02 09:12:45"
-      },
-      {
-        "type": "sell",
-        "symbol": "ENG",
-        "quantity": "2",
-        "price": "0.815",
-        "timestamp": 1554156789,
-        "$loki": 3893,
-        "total": 1.63,
-        "timestamp_string": "2019-4-02 08:13:09"
-      },
-      {
-        "type": "sell",
-        "symbol": "ENG",
-        "quantity": "0.02080000",
-        "price": "0.91",
-        "timestamp": 1554144789,
-        "$loki": 3887,
-        "total": 0.018928,
-        "timestamp_string": "2019-4-02 04:53:09"
-      },
-      {
-        "type": "sell",
-        "symbol": "ENG",
-        "quantity": "7.90000000",
-        "price": "0.91",
-        "timestamp": 1554143400,
-        "$loki": 3884,
-        "total": 7.189000000000001,
-        "timestamp_string": "2019-4-02 04:30:00"
-      },
-      {
-        "type": "sell",
-        "symbol": "ENG",
-        "quantity": "0.1",
-        "price": "0.911000",
-        "timestamp": 1554143400,
-        "$loki": 3883,
-        "total": 0.09110000000000001,
-        "timestamp_string": "2019-4-02 04:30:00"
-      }
-    ],
     "user_orders": [],
     "user_token_balance": {
       "account": "beggars",
@@ -547,9 +317,11 @@ const Data = {
 
 @autoinject()
 export class Market {
-    private chartData = {};
+    private chartData;
     private state: State;
-    private data = Data;
+    private urlTokenParam = '';
+    private loading = false;
+    private token = {};
 
     constructor(private store: Store<State>, private SE: SteemEngine, private dialogService: DialogService) {
 
@@ -558,22 +330,41 @@ export class Market {
     bind() {
         this.store.state.subscribe((state: State) => {
             this.state = state;
+
+            this.token = this.state.tokens.find(t => t.symbol === this.urlTokenParam);
         });
     }
 
-    async canActivate() {
+    async canActivate({ token }) {
+        this.loading = true;
+
         await dispatchify(loadSteemPrice)();
-        await dispatchify(loadTokens)();
+        await dispatchify(loadBuyBook)(token);
+        await dispatchify(loadSellBook)(token);
+        await dispatchify(loadTradesHistory)(token);
+        await dispatchify(loadUserBalances)(token);
+
+        this.urlTokenParam = token;
+    }
+
+    @computedFrom('state.tokens.length')
+    get tokens() {
+        return this.state.tokens.filter(t => t.metadata && !t.metadata.hide_in_market);
     }
 
     attached() {
-        const buyOrderLabels = uniq(Data.buy_orders.map(o => o.price));
+        if (this.state && this.state.user.loggedIn) {
+            dispatchify(loadUserBuyBook)(this.urlTokenParam);
+            dispatchify(loadUserSellBook)(this.urlTokenParam);
+        }
+
+        const buyOrderLabels = uniq(this.state.buyBook.map(o => o.price));
         const buyOrderDataset = [];
 
         let buyOrderCurrentVolume = 0;
 
         buyOrderLabels.forEach(label => {
-            let matchingBuyOrders = Data.buy_orders.filter(o => o.price === label);
+            let matchingBuyOrders = this.state.buyBook.filter(o => o.price === label);
             if (matchingBuyOrders.length === 0) {
                 buyOrderDataset.push(null);
             } else {
@@ -584,12 +375,12 @@ export class Market {
         buyOrderLabels.reverse();
         buyOrderDataset.reverse();
 
-        const sellOrderLabels = uniq(Data.sell_orders.map(o => o.price));
+        const sellOrderLabels = uniq(this.state.sellBook.map(o => o.price));
         const sellOrderDataset = fill(Array(buyOrderDataset.length), null);
         let sellOrderCurrentVolume = 0;
 
         sellOrderLabels.forEach(label => {
-            let matchingSellOrders = Data.sell_orders.filter(o => o.price === label);
+            let matchingSellOrders = this.state.sellBook.filter(o => o.price === label);
 
             if (matchingSellOrders.length === 0) {
                 sellOrderDataset.push(null);
@@ -620,10 +411,15 @@ export class Market {
         };
     }
 
-    @computedFrom('data.trade_history.length', 'state.steemPrice')
+    marketChartRendered() {
+        console.log('rendered');
+        this.loading = false;
+    }
+
+    @computedFrom('state.tradesHistory.length', 'state.steemPrice')
     get lastPrice() {
-        if (this.data.trade_history && this.data.trade_history.length > 0 && this.state) {
-            const item = this.data.trade_history[0].price;
+        if (this.state && this.state.tradesHistory && this.state.tradesHistory.length > 0) {
+            const item = this.state.tradesHistory[0].price;
 
             return `${item} STEEM / ${usdFormat(item , null, this.state.steemPrice)}`;
         }
@@ -631,10 +427,10 @@ export class Market {
         return '--';
     }
 
-    @computedFrom('data.token', 'state.tokens.length')
+    @computedFrom('urlTokenParam', 'state.tokens.length')
     get twentyFourHourVolume() {
         if (this.state) {
-            const token = this.state.tokens.find(t => t.symbol === this.data.token);
+            const token = this.state.tokens.find(t => t.symbol === this.urlTokenParam);
 
             if (token) {
                 return `${token.volume} STEEM / ${usdFormat(token.volume, 2, this.state.steemPrice)}`;
@@ -644,13 +440,21 @@ export class Market {
         return '--';
     }
 
-    @computedFrom('data.buy_orders.length')
+    @computedFrom('state.buyBook.length')
     get bid() {
-        return (this.data.buy_orders.length > 0) ? `${this.data.buy_orders[0].price} STEEM` : '--';
+        if (this.state) {
+            return (this.state.buyBook.length > 0) ? `${this.state.buyBook[0].price} STEEM` : '--';
+        }
+
+        return '--';
     }
 
-    @computedFrom('data.sell_orders.length')
+    @computedFrom('state.sellBook.length')
     get ask() {
-        return (this.data.sell_orders.length > 0) ? `${this.data.sell_orders[0].price} STEEM` : '--';
+        if (this.state) {
+            return (this.state.sellBook.length > 0) ? `${this.state.sellBook[0].price} STEEM` : '--';
+        }
+
+        return '--';
     }
 }
