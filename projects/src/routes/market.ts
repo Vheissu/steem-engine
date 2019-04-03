@@ -1,5 +1,13 @@
+import { DialogService } from 'aurelia-dialog';
+import { State } from 'store/state';
+import { dispatchify, Store } from 'aurelia-store';
 import uniq from 'lodash/uniq';
 import fill from 'lodash/fill';
+import { computedFrom } from 'aurelia-binding';
+import { usdFormat } from 'common/functions';
+import { loadSteemPrice, loadTokens } from 'store/actions';
+import { SteemEngine } from 'services/steem-engine';
+import { autoinject } from 'aurelia-framework';
 
 const Data = {
     "token": "ENG",
@@ -537,8 +545,26 @@ const Data = {
     }
 };
 
+@autoinject()
 export class Market {
     private chartData = {};
+    private state: State;
+    private data = Data;
+
+    constructor(private store: Store<State>, private SE: SteemEngine, private dialogService: DialogService) {
+
+    }
+
+    bind() {
+        this.store.state.subscribe((state: State) => {
+            this.state = state;
+        });
+    }
+
+    async canActivate() {
+        await dispatchify(loadSteemPrice)();
+        await dispatchify(loadTokens)();
+    }
 
     attached() {
         const buyOrderLabels = uniq(Data.buy_orders.map(o => o.price));
@@ -592,5 +618,39 @@ export class Market {
 				}
 			]
         };
+    }
+
+    @computedFrom('data.trade_history.length', 'state.steemPrice')
+    get lastPrice() {
+        if (this.data.trade_history && this.data.trade_history.length > 0 && this.state) {
+            const item = this.data.trade_history[0].price;
+
+            return `${item} STEEM / ${usdFormat(item , null, this.state.steemPrice)}`;
+        }
+
+        return '--';
+    }
+
+    @computedFrom('data.token', 'state.tokens.length')
+    get twentyFourHourVolume() {
+        if (this.state) {
+            const token = this.state.tokens.find(t => t.symbol === this.data.token);
+
+            if (token) {
+                return `${token.volume} STEEM / ${usdFormat(token.volume, 2, this.state.steemPrice)}`;
+            }
+        }
+
+        return '--';
+    }
+
+    @computedFrom('data.buy_orders.length')
+    get bid() {
+        return (this.data.buy_orders.length > 0) ? `${this.data.buy_orders[0].price} STEEM` : '--';
+    }
+
+    @computedFrom('data.sell_orders.length')
+    get ask() {
+        return (this.data.sell_orders.length > 0) ? `${this.data.sell_orders[0].price} STEEM` : '--';
     }
 }
