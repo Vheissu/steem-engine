@@ -13,7 +13,7 @@ import './styles/main.css';
 
 import { PLATFORM } from 'aurelia-pal';
 import { autoinject } from 'aurelia-framework';
-import { Router, RouterConfiguration } from 'aurelia-router';
+import { Router, RouterConfiguration, activationStrategy } from 'aurelia-router';
 
 import { pluck } from 'rxjs/operators';
 
@@ -75,6 +75,7 @@ export class App {
                 name: 'tokens',
                 moduleId: PLATFORM.moduleName('./routes/tokens'),
                 nav: true,
+                activationStrategy: activationStrategy.invokeLifecycle,
                 href: '/tokens',
                 title: 'Tokens'
             },
@@ -83,6 +84,7 @@ export class App {
                 name: 'market',
                 moduleId: PLATFORM.moduleName('./routes/market'),
                 nav: true,
+                activationStrategy: activationStrategy.replace,
                 href: '/market/ENG',
                 title: 'Market'
             },
@@ -91,6 +93,7 @@ export class App {
                 name: 'projects',
                 moduleId: PLATFORM.moduleName('./routes/projects/projects'),
                 nav: true,
+                activationStrategy: activationStrategy.invokeLifecycle,
                 href: '/projects',
                 title: 'Projects'
             },
