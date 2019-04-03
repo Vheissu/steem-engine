@@ -1,0 +1,11 @@
+type TradesHistory {
+    type: String!
+    symbol: String!
+    quantity: String!
+    price: String!
+    timestamp: Int!
+}
+
+type Query {
+    tradesHistory(symbol: String!): [TradesHistory!]!
+}

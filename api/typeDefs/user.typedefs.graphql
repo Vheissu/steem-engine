@@ -1,0 +1,9 @@
+type Balance {
+    account: String!
+    symbol: String!
+    balance: String!
+}
+
+type Query {
+    balances(symbol: String!, account: String!): [Balance!]!
+}
