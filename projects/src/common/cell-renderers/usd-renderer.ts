@@ -14,7 +14,7 @@ export class USDCellRenderer {
     }
 
     refresh(params) {
-        this.eGui.innerHTML = `${params.data.icon ? `<img class="token-icon" src="${params.data.icon}">` : ''} ${params.data.symbol}`;
+        this.eGui.innerHTML = `${params.value ? usdFormat(params.value) : '--'}`;
         return true;
     }
 
