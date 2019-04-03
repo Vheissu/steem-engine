@@ -2,11 +2,16 @@ import { Subscription } from 'rxjs';
 import { DialogService } from 'aurelia-dialog';
 import { State } from 'store/state';
 import { dispatchify, Store } from 'aurelia-store';
+
 import uniq from 'lodash/uniq';
 import fill from 'lodash/fill';
+import find from 'lodash/find';
+
+import moment from 'moment';
+
 import { computedFrom } from 'aurelia-binding';
 import { usdFormat } from 'common/functions';
-import { loadSteemPrice, loadTokens, loadBuyBook, loadSellBook, loadTradesHistory, loadUserBalances, loadUserSellBook, loadUserBuyBook, loading } from 'store/actions';
+import { loadSteemPrice, loadBuyBook, loadSellBook, loadTradesHistory, loadUserBalances, loadUserSellBook, loadUserBuyBook, loading } from 'store/actions';
 import { SteemEngine } from 'services/steem-engine';
 import { autoinject } from 'aurelia-framework';
 
@@ -60,6 +65,8 @@ export class Market {
         await dispatchify(loadSellBook)(token);
         await dispatchify(loadTradesHistory)(token);
         await dispatchify(loadUserBalances)(token);
+        await dispatchify(loadUserBuyBook)(token);
+        await dispatchify(loadUserSellBook)(token);
 
         this.renderMarket = true;
 
@@ -79,11 +86,6 @@ export class Market {
     }
 
     attached() {
-        if (this.state && this.state.user.loggedIn) {
-            dispatchify(loadUserBuyBook)(this.urlTokenParam);
-            dispatchify(loadUserSellBook)(this.urlTokenParam);
-        }
-
         const buyOrderLabels = uniq(this.state.buyBook.map(o => o.price));
         const buyOrderDataset = [];
 
