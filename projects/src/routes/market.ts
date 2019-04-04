@@ -9,9 +9,11 @@ import find from 'lodash/find';
 
 import moment from 'moment';
 
+import { query } from 'common/apollo';
+
 import { computedFrom } from 'aurelia-binding';
 import { usdFormat } from 'common/functions';
-import { loadSteemPrice, loadBuyBook, loadSellBook, loadTradesHistory, loadUserBalances, loadUserSellBook, loadUserBuyBook, loading } from 'store/actions';
+import { loading } from 'store/actions';
 import { SteemEngine } from 'services/steem-engine';
 import { autoinject } from 'aurelia-framework';
 
@@ -43,6 +45,7 @@ export class Market {
     private token = {};
 
     constructor(private store: Store<State>, private SE: SteemEngine, private dialogService: DialogService) {
+        this.store.registerAction('loadMarketData', this.loadMarketData);
     }
 
     bind() {
@@ -60,13 +63,15 @@ export class Market {
     }
 
     async activate({ token }) {
-        await dispatchify(loadSteemPrice)();
-        await dispatchify(loadBuyBook)(token);
-        await dispatchify(loadSellBook)(token);
-        await dispatchify(loadTradesHistory)(token);
-        await dispatchify(loadUserBalances)(token);
-        await dispatchify(loadUserBuyBook)(token);
-        await dispatchify(loadUserSellBook)(token);
+        await this.store.dispatch(this.loadMarketData, token);
+
+        // await dispatchify(loadSteemPrice)();
+        // await dispatchify(loadBuyBook)(token);
+        // await dispatchify(loadSellBook)(token);
+        // await dispatchify(loadTradesHistory)(token);
+        // await dispatchify(loadUserBalances)(token);
+        // await dispatchify(loadUserBuyBook)(token);
+        // await dispatchify(loadUserSellBook)(token);
 
         this.renderMarket = true;
 
@@ -78,6 +83,137 @@ export class Market {
     deactivate() {
         dispatchify(loading)(true);
         this.renderMarket = false;
+    }
+
+    async loadMarketData(state: State, token?) {
+        const newState = { ...state };
+
+        const account = newState.user.loggedIn ? newState.user.name : null;
+
+        const data = await query(`query {
+            sscstore {
+                priceSBD,
+                priceSteem,
+                quantity,
+                disabled
+            },
+            
+            tokenParams {
+                tokenCreationFee
+            },
+            
+            tokens(limit: 1000, offset: 0) {
+                issuer,
+                symbol,
+                name,
+                metadata {
+                    url,
+                    icon,
+                    desc
+                },
+                precision,
+                maxSupply,
+                supply,
+                circulatingSupply
+            },
+            
+            metrics(limit: 1000, offset: 0) {
+              symbol,
+              volume,
+              volumeExpiration,
+              lastPrice,
+              lowestAsk,
+              highestBid,
+              lastDayPrice,
+              lastDayPriceExpiration,
+              priceChangeSteem,
+              priceChangePercent
+            },
+            
+            steempBalance {
+              account,
+              symbol,
+              balance
+            },
+            
+            balances(account: "${account}", limit: 1000, offset: 0) {
+              account,
+              symbol,
+              balance
+            },
+            
+            buyBook(symbol: "${token}", limit: 200, offset: 0) {
+              txId,
+              timestamp,
+              account,
+              symbol,
+              quantity,
+              price,
+              tokensLocked,
+              expiration
+            },
+            
+            sellBook(symbol: "${token}", limit: 200, offset: 0) {
+              txId,
+              timestamp,
+              account,
+              symbol,
+              quantity,
+              price,
+              expiration
+            },
+            
+            tradesHistory(symbol: "${token}", limit: 30, offset: 0) {
+              type,
+              symbol,
+              quantity,
+              price,
+              timestamp
+            },
+            
+            userBuyBook: buyBook(symbol: "${token}", account: "${account}", limit: 100, offset: 0) {
+              txId,
+              timestamp,
+              account,
+              symbol,
+              quantity,
+              price,
+              tokensLocked,
+              expiration
+            },
+            
+            userSellBook: sellBook(symbol: "${token}", account: "${account}", limit: 100, offset: 0) {
+              txId,
+              timestamp,
+              account,
+              symbol,
+              quantity,
+              price,
+              expiration
+            },
+            
+            tokenBalance(symbol: "${token}", account: "${account}") {
+                account,
+                symbol,
+                balance
+            }
+        }`);
+
+        if (data.data) {
+            const response = data.data;
+
+            newState.buyBook = response.buyBook;
+            newState.sellBook = response.sellBook;
+            newState.tradesHistory = response.tradesHistory;
+
+            if (newState.user.loggedIn) {
+                newState.user.tokenBalance = response.tokenBalance;
+                newState.user.buyBook = response.userBuyBook;
+                newState.user.sellBook = response.userSellBook;
+            }
+        }
+
+        return newState;
     }
 
     @computedFrom('state.tokens.length')

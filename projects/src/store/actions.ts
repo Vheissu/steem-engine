@@ -93,77 +93,6 @@ export async function getToken(state: State, token: string) {
     return newState;
 }
 
-export async function loadBuyBook(state: State, symbol: string): Promise<State> {
-    let newState = { ...state };
-
-    try {
-        const buyBook = await SE.buyBook(symbol) as any[];
-
-        newState.buyBook = buyBook;
-    } catch (e) {
-        return newState;
-    }
-
-    return newState;
-}
-
-export async function loadUserBuyBook(state: State, symbol: string): Promise<State> {
-    let newState = { ...state };
-
-    try {
-        const buyBook = await SE.buyBook(symbol, newState.user.name) as any[];
-
-        newState.user.buyBook = buyBook;
-    } catch (e) {
-        return newState;
-    }
-
-    return newState;
-}
-
-export async function loadSellBook(state: State, symbol: string): Promise<State> {
-    let newState = { ...state };
-
-    try {
-        const sellBook = await SE.sellBook(symbol) as any[];
-
-        newState.sellBook = sellBook;
-    } catch (e) {
-        return newState;
-    }
-
-    return newState;
-}
-
-export async function loadUserSellBook(state: State, symbol: string): Promise<State> {
-    let newState = { ...state };
-
-    try {
-        const sellBook = await SE.sellBook(symbol, newState.user.name) as any[];
-
-        newState.user.sellBook = sellBook;
-    } catch (e) {
-        console.log(e);
-        return newState;
-    }
-
-    return newState;
-}
-
-export async function loadTradesHistory(state: State, symbol: string): Promise<State> {
-    let newState = { ...state };
-
-    try {
-        const tradesHistory = await SE.tradesHistory(symbol) as any[];
-
-        newState.tradesHistory = tradesHistory;
-    } catch (e) {
-        return newState;
-    }
-
-    return newState;
-}
-
 export async function loadUserBalances(state: State, symbol: string, account?): Promise<State> {
     let newState = { ...state };
 
@@ -193,9 +122,4 @@ store.registerAction('loadSteemPrice', loadSteemPrice);
 store.registerAction('loadBalances', loadBalances);
 store.registerAction('loadTokens', loadTokens);
 store.registerAction('getToken', getToken);
-store.registerAction('loadBuyBook', loadBuyBook);
-store.registerAction('loadUserBuyBook', loadUserBuyBook);
-store.registerAction('loadSellBook', loadSellBook);
-store.registerAction('loadUserSellBook', loadUserSellBook);
-store.registerAction('loadTradesHistory', loadTradesHistory);
 store.registerAction('loadUserBalances', loadUserBalances);
