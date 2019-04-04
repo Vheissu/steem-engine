@@ -1,4 +1,5 @@
 export const baseEnvironmentConfiguration = {
     siteName: 'Steem Engine.',
-    defaultLocale: 'en'
+    defaultLocale: 'en',
+    GRAPHQL_API: 'https://graphql.steem.services/'
 };
