@@ -63,7 +63,7 @@ export class Launch {
         },
         {
             id: 'interstellar',
-            name: 'Interstella',
+            name: 'Interstellar',
             subheading: 'Regulation S - Foreign Offering',
             description: `Offer securities in the form of tokens to foreign investors and employees, advisers, and independent contractors based outside the United States.`,
             items: [
