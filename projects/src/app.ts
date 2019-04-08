@@ -60,7 +60,7 @@ export class App {
                 route: ['', 'home'],
                 name: 'home',
                 moduleId: PLATFORM.moduleName('./routes/home'),
-                nav: true,
+                nav: false,
                 title: 'Home'
             },
             {
@@ -74,7 +74,7 @@ export class App {
                 route: 'tokens/:token?',
                 name: 'tokens',
                 moduleId: PLATFORM.moduleName('./routes/tokens'),
-                nav: true,
+                nav: false,
                 activationStrategy: activationStrategy.invokeLifecycle,
                 href: '/tokens',
                 title: 'Tokens'
@@ -92,7 +92,7 @@ export class App {
                 route: 'projects/:project?',
                 name: 'projects',
                 moduleId: PLATFORM.moduleName('./routes/projects/projects'),
-                nav: true,
+                nav: false,
                 activationStrategy: activationStrategy.invokeLifecycle,
                 href: '/projects',
                 title: 'Projects'
@@ -101,7 +101,7 @@ export class App {
                 route: 'balances/:user?',
                 name: 'wallet',
                 moduleId: PLATFORM.moduleName('./routes/balances'),
-                nav: true,
+                nav: false,
                 href: '/balances',
                 title: 'Wallet'
             },
@@ -116,7 +116,7 @@ export class App {
                 route: 'kyc',
                 name: 'kyc',
                 moduleId: PLATFORM.moduleName('./routes/kyc/landing'),
-                nav: true,
+                nav: false,
                 title: 'Kyc'
             },
             {
