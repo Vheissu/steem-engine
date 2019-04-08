@@ -120,11 +120,11 @@ export class App {
                 title: 'Kyc'
             },
             {
-                route: 'pricing',
-                name: 'pricing',
-                moduleId: PLATFORM.moduleName('./routes/pricing'),
+                route: 'launch',
+                name: 'launch',
+                moduleId: PLATFORM.moduleName('./routes/launch'),
                 nav: true,
-                title: 'Pricing'
+                title: 'Launch'
             },
             {
                 route: 'pricing-enquire',

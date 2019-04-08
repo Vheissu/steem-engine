@@ -1,0 +1,40 @@
+<template>
+    <div class="container launch-header">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Prepare For Launch</h1>
+                <div class="row">
+                    <p class="col-md-9">Select the offering that best fits your project. If you're not sure, that's okay. Choose the one that comes closest to your situation, and we'll help you to fine-tune your strategy</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="row mb-4">
+        <div class="container">
+            <div class="row">
+                <div class="pricing-package col-md-4" repeat.for="package of pricingPackages">
+                    <div class="row h-100">
+                        <div class="pricing-package__content d-flex flex-column h-100 shadow">
+                            <div class="pricing-package__headings w-100">
+                                <div class="pricing-package__heading"><h1>${package.name}</h1></div>
+                                <div class="pricing-package__sub-heading">${package.subheading}</div>
+                            </div>
+    
+                            <div class="pricing-package__description padding-20 w-100">${package.description}</div>
+    
+                            <ul class="w-100">
+                                <li repeat.for="item of package.items">${item}</li>
+                            </ul>  
+                            
+                            <div class="padding-20 w-100 text-center">
+                                <div class="pricing-package__price">${package.price}</div>       
+                                <button type="button" class="btn btn-md btn-block btn-primary" click.delegate="launch(package.id)">Launch Project</button>  
+                            </div>
+                        </div>   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</template>
