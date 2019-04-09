@@ -12,10 +12,10 @@ const port = 3001;
 
 const cors = require('cors');
 
-app2.use(cors({ origin: true }));
+app.use(cors({ origin: true }));
+app.use(express.json());
 
-main.use('/api/v1', app);
-main.use(express.json());
+main.use('/v1', app);
 
 app.post('/launchContact', (req, res) => {
     const { name, email, packageName, steemHandle, discordHandle, telegramHandle, skypeHandle, phone, otherComments, preferredCommunication } = req.body;
@@ -40,7 +40,11 @@ app.post('/launchContact', (req, res) => {
         `
     };
 
-    sgMail.send(message);
+    sgMail.send(message).then(() => {
+        res.status(200).send('SUCCESS');
+    }).catch((e) => {
+        res.status(500).json(e.response.body);
+    })
 });
 
 main.listen(port, () => console.log(`Steem Engine Server running on port ${port}`));
