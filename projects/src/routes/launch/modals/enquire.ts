@@ -1,6 +1,6 @@
 import { DialogController } from 'aurelia-dialog';
 import { autoinject, lazy } from 'aurelia-framework';
-import { HttpClient } from 'aurelia-fetch-client';
+import { HttpClient, json } from 'aurelia-fetch-client';
 import environment from 'environment';
 
 @autoinject()
@@ -38,7 +38,18 @@ export class EnquireModal {
         this.item = item;
     }
 
-    send() {
+    async send() {
         this.fields.packageName = this.item.name;
+
+        try {
+            await this.http.fetch('launchContact', {
+                method: 'POST',
+                body: json(this.fields)
+            });
+
+            this.controller.close(true);
+        } catch (e) {
+            return;
+        }
     }
 }
