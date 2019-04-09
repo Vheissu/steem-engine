@@ -55,10 +55,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
     splitChunks: {
       hidePathInfo: true,
       chunks: "initial",
-      maxInitialRequests: Infinity,
-      maxAsyncRequests: Infinity,
-      minSize: 30000,
-      maxSize: 50000,
+      maxSize: 200000,
       cacheGroups: {
         default: false,
         fontawesome: {
@@ -73,30 +70,12 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
           priority: 90,
           enforce: true
         },
-        vendorSplit: {
-          test: /[\\/]node_modules[\\/]/,
-          name(module) {
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-            return `vendor.${packageName.replace('@', '')}`;
-          },
-          priority: 20
-        },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           name: "vendors",
           priority: 19,
-          enforce: true
-        },
-        vendorAsyncSplit: {
-          test: /[\\/]node_modules[\\/]/,
-          name(module) {
-            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-            return `vendor.async.${packageName.replace('@', '')}`;
-          },
-          chunks: 'async',
-          priority: 10,
-          reuseExistingChunk: true,
-          minSize: 5000
+          enforce: true,
+          minSize: 30000
         },
         vendorsAsync: {
           test: /[\\/]node_modules[\\/]/,
@@ -104,18 +83,8 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
           chunks: 'async',
           priority: 9,
           reuseExistingChunk: true,
-          enforce: true
-        },
-        commonAsync: {
-          name(module) {
-            const moduleName = module.context.match(/[^\\/]+(?=\/$|$)/)[0];
-            return `common.async.${moduleName.replace('@', '')}`;
-          },
-          minChunks: 2,
-          chunks: 'async',
-          priority: 1,
-          reuseExistingChunk: true,
-          minSize: 5000
+          enforce: true,
+          minSize: 10000
         },
         commonsAsync: {
           name: 'commons.async',
@@ -123,7 +92,8 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
           chunks: 'async',
           priority: 0,
           reuseExistingChunk: true,
-          enforce: true
+          enforce: true,
+          minSize: 10000
         }
       }
     }
