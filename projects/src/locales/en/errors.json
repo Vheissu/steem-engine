@@ -19,5 +19,6 @@
     "errorLogin": "Unable to log in with the @{username} account.",
     "errorLoading": "There was an error loading the @{username} account.",
     "invalidPrivateKeyOrPassword": "Invalid private key or master password.",
-    "errorSubmittedTransfer": "An error occurred submitting the transfer: {error}"
+    "errorSubmittedTransfer": "An error occurred submitting the transfer: {error}",
+    "name": "Please enter your name"
 }

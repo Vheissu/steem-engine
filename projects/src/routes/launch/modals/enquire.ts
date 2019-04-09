@@ -1,12 +1,15 @@
+import { BootstrapFormRenderer } from './../../../resources/bootstrap-form-renderer';
 import { DialogController } from 'aurelia-dialog';
-import { autoinject, lazy } from 'aurelia-framework';
+import { autoinject, lazy, newInstance } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
 import environment from 'environment';
+import { ValidationController, ValidationRules } from 'aurelia-validation';
 
 @autoinject()
 export class EnquireModal {
     private http;
     private item;
+    private renderer: BootstrapFormRenderer;
 
     private fields = {
         name: '',
@@ -21,7 +24,16 @@ export class EnquireModal {
         preferredCommunication: ''
     };
 
-    constructor(private controller: DialogController, @lazy(HttpClient) private getHttpClient: () => HttpClient) {
+    private rules = ValidationRules
+        .ensure('name').required().withMessageKey('name')
+        .ensure('email').email().required().withMessageKey('emailAddress')
+        .ensure('preferredCommunication').required().withMessageKey('contactMethod')
+        .rules;
+
+    constructor(
+        private controller: DialogController,
+        @newInstance() private validationController: ValidationController, 
+        @lazy(HttpClient) private getHttpClient: () => HttpClient) {
         this.http = getHttpClient();
 
         this.http.configure(config => {
@@ -32,6 +44,11 @@ export class EnquireModal {
 
         this.controller.settings.lock = false;
         this.controller.settings.centerHorizontalOnly = true;
+
+        this.renderer = new BootstrapFormRenderer();
+        this.validationController.addRenderer(this.renderer);
+
+        this.validationController.addObject(this.fields, this.rules);
     }
 
     async activate(item) {
@@ -40,6 +57,12 @@ export class EnquireModal {
 
     async send() {
         this.fields.packageName = this.item.name;
+
+        const result = await this.validationController.validate();
+
+        if (!result.valid) {
+            return;
+        }
 
         try {
             await this.http.fetch('launchContact', {
