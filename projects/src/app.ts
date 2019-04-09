@@ -122,9 +122,16 @@ export class App {
             {
                 route: 'launch',
                 name: 'launch',
-                moduleId: PLATFORM.moduleName('./routes/launch'),
+                moduleId: PLATFORM.moduleName('./routes/launch/launch'),
                 nav: true,
                 title: 'Launch'
+            },
+            {
+                route: 'state-costs',
+                name: 'stateCosts',
+                moduleId: PLATFORM.moduleName('./routes/launch/state-costs'),
+                nav: false,
+                title: 'State Costs'
             },
             {
                 route: 'pricing-enquire',

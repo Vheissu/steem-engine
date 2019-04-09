@@ -1,5 +1,10 @@
-import './launch.css';
+import { DialogService } from 'aurelia-dialog';
+import { autoinject } from 'aurelia-framework';
 
+import './launch.css';
+import { EnquireModal } from './modals/enquire';
+
+@autoinject()
 export class Launch {
     private pricingPackages = [
         {
@@ -15,7 +20,7 @@ export class Launch {
                 'Private Placement Memorandum (PPM)',
                 'Security Token Subscription Agreement'
             ],
-            price: '9,5000 USD'
+            price: '9,5000 USD + State costs'
         },
         {
             id: 'velocity',
@@ -29,7 +34,7 @@ export class Launch {
                 'Private Placement Memorandum (PPM)',
                 'Security Token Subscription Agreement'
             ],
-            price: '9,5000 USD'
+            price: '9,5000 USD + State costs'
         },
         {
             id: 'slingshot',
@@ -153,4 +158,14 @@ export class Launch {
             price: '4,000 USD'
         }
     ];
+
+    constructor(private dialogService: DialogService) {
+
+    }
+
+    private launch(item: any) {
+        this.dialogService.open({ viewModel: EnquireModal, model: item }).whenClosed(response => {
+            console.log(response);
+        });
+    }
 }

@@ -88,3 +88,9 @@
     background-color: #8E4A2C;
     color: #FFF;
 }
+
+
+.route--launch ux-dialog-container {
+    max-height: calc(100vh - 225px);
+    padding: 25px 0;
+}
