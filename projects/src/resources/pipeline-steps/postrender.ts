@@ -1,6 +1,6 @@
 export class PostRenderStep {
     run(navigationInstruction, next) {
-        let element = document.getElementsByTagName('main')[0];
+        let element = document.getElementsByTagName('body')[0];
         
         smoothScrollReset(element);
         return next();

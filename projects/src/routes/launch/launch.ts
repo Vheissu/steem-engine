@@ -20,7 +20,8 @@ export class Launch {
                 'Private Placement Memorandum (PPM)',
                 'Security Token Subscription Agreement'
             ],
-            price: '9,5000 USD + State costs'
+            price: '9,5000 USD + State costs',
+            stateCosts: true
         },
         {
             id: 'velocity',
@@ -34,7 +35,8 @@ export class Launch {
                 'Private Placement Memorandum (PPM)',
                 'Security Token Subscription Agreement'
             ],
-            price: '9,5000 USD + State costs'
+            price: '9,5000 USD + State costs',
+            stateCosts: true
         },
         {
             id: 'slingshot',
@@ -49,7 +51,8 @@ export class Launch {
                 'Security Token Subscription Agreement',
                 'State Filings (Additional cost per State)'
             ],
-            price: '9,5000 USD + State costs'
+            price: '9,5000 USD + State costs',
+            stateCosts: true
         },
         {
             id: 'alliance',

@@ -18,12 +18,7 @@ ux-dialog-container {
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    min-width: 300px;
-    width: -moz-fit-content;
-    width: -webkit-fit-content;
     width: fit-content;
-    height: -moz-fit-content;
-    height: -webkit-fit-content;
     height: fit-content;
     margin: auto;
     outline: 0;
@@ -35,12 +30,7 @@ ux-dialog {
     border: 1px solid rgba(0, 0, 0, 0.2);
     border-radius: 5px;
     padding: 3px;
-    min-width: 512px;
-    width: -moz-fit-content;
-    width: -webkit-fit-content;
-    width: fit-content;
-    height: -moz-fit-content;
-    height: -webkit-fit-content;
+    width: 95%;
     height: fit-content;
     margin: auto;
     border-image-source: initial;
@@ -85,4 +75,15 @@ ux-dialog > ux-dialog-footer {
 
 .ux-dialog-open {
     overflow: hidden;
+}
+
+@media all and (min-width: 992px) {
+    ux-dialog-container {
+        min-width: 300px;
+    }
+
+    ux-dialog {
+        min-width: 512px;
+        width: fit-content;
+    }
 }

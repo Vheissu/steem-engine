@@ -50,6 +50,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
     chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js'
   },
   optimization: {
+    concatenateModules: false,
     runtimeChunk: true,
     moduleIds: 'hashed',
     splitChunks: {

@@ -1,10 +1,12 @@
+import { PLATFORM } from 'aurelia-pal';
 import { BootstrapFormRenderer } from './../../../resources/bootstrap-form-renderer';
 import { DialogController } from 'aurelia-dialog';
-import { autoinject, lazy, newInstance } from 'aurelia-framework';
+import { autoinject, lazy, newInstance, useView } from 'aurelia-framework';
 import { HttpClient, json } from 'aurelia-fetch-client';
 import environment from 'environment';
 import { ValidationController, ValidationRules } from 'aurelia-validation';
 
+@useView(PLATFORM.moduleName('./enquire.html'))
 @autoinject()
 export class EnquireModal {
     private http;

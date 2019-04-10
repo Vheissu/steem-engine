@@ -89,8 +89,13 @@
     color: #FFF;
 }
 
+.pricing-package__state-costs {
+    font-size: 14px;
+    margin: 10px 0;
+}
+
 
 .route--launch ux-dialog-container {
     max-height: calc(100vh - 225px);
-    padding: 25px 0;
+    padding: 0 0 25px 0;
 }
