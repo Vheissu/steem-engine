@@ -72,10 +72,6 @@ export class EnquireModal {
             });
 
             this.formSubmitted = true;
-
-            setTimeout(() => {
-                this.controller.close(true);
-            }, 3000);
         } catch (e) {
             return;
         }
