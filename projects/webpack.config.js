@@ -52,6 +52,7 @@ module.exports = ({ production, server, extractCss, coverage, analyze, karma } =
   optimization: {
     runtimeChunk: true,
     moduleIds: 'hashed',
+    concatenateModules: false,
     splitChunks: {
       hidePathInfo: true,
       chunks: "initial",
