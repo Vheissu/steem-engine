@@ -1,10 +1,11 @@
 <template>
     <ux-dialog>
       <ux-dialog-body>
-        <h2>${'Enquire' & t}</h2>
-        <p>${"We just need a few details from you and then we'll be in contact" & t}. You're enquiring about ${item.name & t}.</p>
-
-        <form>
+        <h2>${!formSubmitted ? 'Enquire' : 'Thank you' & t}</h2>
+        <p if.bind="!formSubmitted">${"We just need a few details from you and then we'll be in contact" & t}. You're enquiring about ${item.name & t}.</p>
+        <p if.bind="formSubmitted">${'Your details have been submitted and we will be in touch' & t}</p>
+        
+        <form show.bind="!formSubmitted">
             <div class="form-group">
                 <label>${'Name' & t} <span class="asterisk text-danger">*</span></label>
                 <input type="text" class="form-control" placeholder="John Citizen" value.bind="fields.name & validate:validationController">
@@ -45,8 +46,9 @@
       </ux-dialog-body>
   
       <ux-dialog-footer>
-        <button class="btn btn-sm btn-secondary" click.trigger="controller.cancel()">${'Cancel' & t}</button>&nbsp;
-        <button class="btn btn-sm btn-primary" click.trigger="send()">${'Send' & t}</button>
+        <button class="btn btn-sm btn-secondary" click.trigger="controller.cancel()" if.bind="!formSubmitted">${'Cancel' & t}</button>&nbsp;
+        <button class="btn btn-sm btn-primary" click.trigger="send()" if.bind="!formSubmitted">${'Send' & t}</button>
+        <button class="btn btn-sm btn-primary" click.trigger="controller.close(true)" if.bind="formSubmitted">${'Close' & t}</button>
       </ux-dialog-footer>
     </ux-dialog>
   </template>

@@ -12,6 +12,7 @@ export class EnquireModal {
     private http;
     private item;
     private renderer: BootstrapFormRenderer;
+    private formSubmitted = false;
 
     private fields = {
         name: '',
@@ -72,7 +73,7 @@ export class EnquireModal {
                 body: json(this.fields)
             });
 
-            this.controller.close(true);
+            this.formSubmitted = true;
         } catch (e) {
             return;
         }
