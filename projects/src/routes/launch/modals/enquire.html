@@ -3,7 +3,7 @@
       <ux-dialog-body>
         <h2>${!formSubmitted ? 'Enquire' : 'Thank you' & t}</h2>
         <p if.bind="!formSubmitted">${"We just need a few details from you and then we'll be in contact" & t}. You're enquiring about ${item.name & t}.</p>
-        <p if.bind="formSubmitted">${'Your details have been submitted and we will be in touch' & t}</p>
+        <p if.bind="formSubmitted">${'Your details have been submitted and we will be in touch' & t}. If you have not done so already, please join our Discord <a href="https://discord.gg/QnUXGsE" target="_blank">here</a>.</p>
         
         <form show.bind="!formSubmitted">
             <div class="form-group">
